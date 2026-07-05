@@ -1,0 +1,122 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo-rheetahs.png';
+
+const year = new Date().getFullYear();
+const wa = 'https://wa.me/2349129508724';
+const ig = 'https://www.instagram.com/rheetahs_kitchen/';
+const nav = [
+  { href: '/#signatures', label: 'Signatures' },
+  { href: '/#story', label: 'Story' },
+  { href: '/#boxes', label: 'Boxes' },
+  { href: '/#drinks', label: 'Drinks' },
+  { href: '/#team', label: 'Team' },
+  { href: '/gwr', label: 'GWR' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="/" class="footer__mark" aria-label="Rheetah's Kitchen — home">
+          <Image src={logo} alt="Rheetah's Kitchen" widths={[180, 260]} loading="lazy" class="footer__logo" />
+        </a>
+        <p class="footer__tag">Love at first bite.</p>
+        <p class="footer__sub">Lagos food, cooked at volume and packed by hand. Founded 2021.</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <h2 class="footer__h">Explore</h2>
+        <ul role="list">
+          {nav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="footer__nav">
+        <h2 class="footer__h">Connect</h2>
+        <ul role="list">
+          <li><a href={wa} target="_blank" rel="noopener" class="link-underline">Order on WhatsApp</a></li>
+          <li><a href={ig} target="_blank" rel="noopener">Instagram @rheetahs_kitchen</a></li>
+          <li><a href="/gwr" class="link-underline">The GWR attempt</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Studio attribution — real client site -->
+    <div class="footer__base">
+      <p class="footer__built">
+        Designed and built by
+        <a href="https://agtconsults.com/" target="_blank" rel="noopener" class="footer__studio">Alpha Global Tech and Consulting</a>
+      </p>
+      <p class="footer__legal">© {year} Rheetah's Kitchen</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--paper-deep);
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-2xl) var(--space-l);
+    margin-top: var(--space-3xl);
+  }
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl) var(--space-l);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--line);
+  }
+  .footer__logo { height: 2.6rem; width: auto; }
+  .footer__tag {
+    margin-top: var(--space-m);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--step-2);
+    color: var(--brown);
+    line-height: 1.1;
+  }
+  .footer__sub { margin-top: var(--space-2xs); max-width: 32ch; color: var(--ink-soft); font-size: var(--step--1); }
+
+  .footer__h {
+    font-family: var(--font-body);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: var(--space-s);
+  }
+  .footer__nav ul { display: flex; flex-direction: column; gap: 0.7em; }
+  .footer__nav a { color: var(--ink-soft); transition: color 0.3s var(--ease); }
+  .footer__nav a:hover { color: var(--ink); }
+
+  .footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2xs) var(--space-l);
+    padding-top: var(--space-l);
+  }
+  .footer__built { font-size: var(--step--1); color: var(--ink-soft); line-height: 1.7; }
+  .footer__studio {
+    color: var(--ink);
+    font-weight: 600;
+    border-bottom: 1px solid var(--orange);
+    transition: color 0.3s var(--ease);
+  }
+  .footer__studio:hover { color: var(--orange); }
+  .footer__legal { font-size: var(--step--1); color: var(--ink-faint); }
+
+  @media (min-width: 640px) {
+    .footer__top { grid-template-columns: 2fr 1fr 1.2fr; }
+    .footer__brand { grid-column: 1 / -1; }
+  }
+  @media (min-width: 900px) {
+    .footer__top { grid-template-columns: 2.4fr 1fr 1.3fr; }
+    .footer__brand { grid-column: auto; }
+  }
+</style>

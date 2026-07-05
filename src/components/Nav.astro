@@ -1,0 +1,207 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo-rheetahs.png';
+
+const links = [
+  { href: '/#signatures', label: 'Signatures' },
+  { href: '/#story', label: 'Story' },
+  { href: '/#boxes', label: 'Boxes' },
+  { href: '/#drinks', label: 'Drinks' },
+  { href: '/#team', label: 'Team' },
+  { href: '/gwr', label: 'GWR' },
+  { href: '/#contact', label: 'Contact' },
+];
+const wa = 'https://wa.me/2349129508724';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="nav" data-nav>
+  <div class="wrap nav__inner">
+    <a href="/" class="nav__brand" aria-label="Rheetah's Kitchen — home">
+      <Image src={logo} alt="Rheetah's Kitchen" widths={[132, 200]} loading="eager" class="nav__logo" />
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="nav__link"
+          aria-current={path === l.href ? 'page' : undefined}
+        >
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="nav__actions">
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary nav__cta">Order on WhatsApp</a>
+      <button
+        class="nav__toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-nav-toggle
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__mobile" id="mobile-menu" data-nav-menu hidden>
+    <nav aria-label="Mobile">
+      <a href="/" class="nav__mlink" aria-current={path === '/' ? 'page' : undefined}>Home</a>
+      {links.map((l) => (
+        <a href={l.href} class="nav__mlink" aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+      ))}
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary nav__mcta">Order on WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--cream) 82%, transparent);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s var(--ease), background-color 0.4s var(--ease);
+  }
+  .nav[data-scrolled] {
+    border-bottom-color: var(--line);
+    background: color-mix(in srgb, var(--cream) 93%, transparent);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    min-height: 4.5rem;
+  }
+  .nav__brand { display: flex; align-items: center; }
+  .nav__logo {
+    height: clamp(2rem, 1.7rem + 1.1vw, 2.45rem);
+    width: auto;
+  }
+  .nav__links {
+    display: none;
+    align-items: center;
+    gap: clamp(1rem, 1.6vw, 1.9rem);
+  }
+  .nav__link {
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+    position: relative;
+    padding-block: 0.4rem;
+    white-space: nowrap;
+    transition: color 0.3s var(--ease);
+  }
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0.1rem;
+    width: 100%; height: 1px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+  .nav__link:hover { color: var(--ink); }
+  .nav__link:hover::after,
+  .nav__link[aria-current='page']::after { transform: scaleX(1); }
+  .nav__link[aria-current='page'] { color: var(--ink); }
+
+  .nav__actions { display: flex; align-items: center; gap: var(--space-s); }
+  .nav__cta { display: none; }
+
+  .nav__toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.75rem;
+    height: 2.75rem;
+    align-items: center;
+    border-radius: 999px;
+    transition: background-color 0.3s var(--ease);
+  }
+  .nav__toggle:hover { background: var(--paper-warm); }
+  .nav__toggle span {
+    display: block;
+    width: 22px;
+    height: 1.7px;
+    background: var(--brown);
+    border-radius: 2px;
+    transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
+  }
+  .nav__toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(6.7px) rotate(45deg); }
+  .nav__toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .nav__toggle[aria-expanded='true'] span:nth-child(3) { transform: translateY(-6.7px) rotate(-45deg); }
+
+  .nav__mobile {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    background: var(--cream);
+  }
+  .nav__mobile[hidden] { display: none; }
+  .nav__mobile nav {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-s) clamp(1.25rem, 5vw, 3rem) var(--space-l);
+  }
+  .nav__mlink {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    padding-block: 0.5em;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--ink);
+  }
+  .nav__mlink[aria-current='page'] { color: var(--orange); }
+  .nav__mcta { margin-top: var(--space-m); justify-content: center; }
+
+  @media (min-width: 1080px) {
+    .nav__links { display: flex; }
+    .nav__cta { display: inline-flex; }
+    .nav__toggle { display: none; }
+    .nav__mobile { display: none !important; }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('[data-nav]');
+  const toggle = document.querySelector('[data-nav-toggle]');
+  const menu = document.querySelector('[data-nav-menu]');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      if (open) {
+        menu.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+      } else {
+        menu.removeAttribute('hidden');
+      }
+    });
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        menu.setAttribute('hidden', '');
+      })
+    );
+  }
+
+  // subtle border on scroll
+  const onScroll = () => {
+    if (window.scrollY > 8) nav?.setAttribute('data-scrolled', '');
+    else nav?.removeAttribute('data-scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

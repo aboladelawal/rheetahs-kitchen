@@ -1,0 +1,628 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Marquee from '../components/Marquee.astro';
+
+import storyRita from '../assets/img/story-rita.jpg';
+import jollof from '../assets/img/jollof-flatlay.jpg';
+import cateringSingle from '../assets/img/catering-single-serves.jpg';
+import cateringBuffet from '../assets/img/catering-buffet.jpg';
+import cateringCocktail from '../assets/img/catering-cocktail.jpg';
+import fireFeast from '../assets/img/signature-fire-feast-x.jpg';
+import bigPot from '../assets/img/creative-serving-bigpot.jpg';
+import boxBamboo from '../assets/img/box-bamboo-tray.jpg';
+import boxGift from '../assets/img/box-gift-box.jpg';
+import boxDelivery from '../assets/img/box-delivery-packs.jpg';
+import boxWrapped from '../assets/img/box-gift-wrapped.jpg';
+import kitchenPots from '../assets/img/creative-pots-smiling.jpg';
+import kitchenCounter from '../assets/img/creative-counter-banner.jpg';
+import kitchenPacking from '../assets/img/creative-packing.jpg';
+import zobo from '../assets/img/drinks-fruity-zobo.jpg';
+import team from '../assets/img/team.jpg';
+
+const wa = 'https://wa.me/2349129508724';
+
+const catering = [
+  { image: cateringSingle, alt: 'Rows of jollof rice cups topped with chicken and suya, garnished with parsley', label: 'Single serves for 80', caption: 'Jollof, chicken, suya.' },
+  { image: cateringBuffet, alt: 'A catered buffet spread of rice and proteins in serving trays', label: 'Buffet setup', caption: 'A spread, fully run.' },
+  { image: cateringCocktail, alt: 'Small chops and cocktail bites plated for an event table', label: 'Cocktail table', caption: 'Small chops, done right.' },
+  { image: fireFeast, alt: 'Fried rice with shrimp and peppers served inside a halved pineapple', label: 'Pineapple rice', caption: 'Fire Feast X, by the tray.' },
+];
+
+const kitchen = [
+  { image: kitchenPots, alt: 'Rita smiling behind the big serving pots at her stand' },
+  { image: kitchenCounter, alt: "Rita at the Rheetah's Kitchen display counter" },
+  { image: kitchenPacking, alt: 'Hands packing a meal box by hand' },
+];
+---
+
+<Base
+  title="Rheetah's Kitchen — Love at first bite"
+  description="Lagos food by Chef Rheetah. House jollof, the Fire Feast X pineapple rice, curated gift boxes and Fruity Zobo — cooked at volume and packed by hand. Founded 2021."
+>
+  <!-- 1 · HERO -->
+  <section class="hero" aria-label="Rheetah's Kitchen">
+    <video
+      class="hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/media/hero-poster.jpg"
+      preload="metadata"
+      aria-hidden="true"
+    >
+      <source src="/media/hero.webm" type="video/webm" />
+      <source src="/media/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__scrim"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <span class="eyebrow hero__eyebrow">Rheetah's Kitchen · Lagos</span>
+        <h1 class="hero__title">Love at <em>first bite.</em></h1>
+        <p class="hero__strip">Lagos. Chef. Founder. Est 2021.</p>
+        <a href={wa} target="_blank" rel="noopener" class="btn hero__cta">
+          Order on WhatsApp <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Marquee items={['Love at first bite', 'House jollof', 'Fire Feast X', 'Packed by hand', 'Founded 2021']} />
+
+  <!-- 2 · STORY -->
+  <section class="section feature" id="story">
+    <div class="wrap feature__inner">
+      <div class="feature__media" data-reveal>
+        <Image
+          src={storyRita}
+          alt="Chef Rita Mensah smiling at her serving pots at the GTCO Food and Drink Festival stand"
+          widths={[480, 768, 960]}
+          sizes="(min-width: 860px) 44vw, 92vw"
+          loading="lazy"
+          class="feature__img"
+        />
+      </div>
+      <div class="feature__copy" data-reveal>
+        <span class="eyebrow">The story · Est 2021</span>
+        <h2 class="feature__title">In her honour.</h2>
+        <p>
+          Rita Mensah's cooking started in 2019, at university, feeding friends. What began as meals
+          made for people she cared about turned into something people came back for, recommended,
+          and trusted with their own tables.
+        </p>
+        <p>
+          Her late mother was a caterer and food vendor, and the way she fed people stayed with Rita.
+          In her honour, and driven by her own love for food, Rita built Rheetah's Kitchen.
+        </p>
+        <p>
+          For Rita, cooking is more than a meal. It is love, creativity, purpose, and legacy, all on
+          one plate.
+        </p>
+        <ul role="list" class="timeline">
+          <li><strong>2019</strong><span>Started cooking at university</span></li>
+          <li><strong>2021</strong><span>Rheetah's Kitchen officially launched</span></li>
+          <li><strong>2026</strong><span>One of 204 vendors at the GTCO Food and Drink Festival — sold out three days running</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · SIGNATURES -->
+  <section class="section-sm" id="signatures">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">The signatures</span>
+          <h2 class="sec-title">Two dishes people keep coming back for</h2>
+        </div>
+      </div>
+      <div class="signatures">
+        <article class="sig" data-reveal>
+          <div class="sig__media">
+            <Image
+              src={jollof}
+              alt="Overhead flatlay of jollof rice cups topped with chicken, beef and suya"
+              widths={[480, 768, 900]}
+              sizes="(min-width: 780px) 46vw, 92vw"
+              loading="lazy"
+              class="sig__img"
+            />
+            <span class="sig__tag">Live</span>
+          </div>
+          <div class="sig__body">
+            <h3 class="sig__name">Jollof rice</h3>
+            <p class="sig__desc">
+              Her house jollof. Smoky, deep, and the reason people keep her number. Party trays,
+              single serves, or a full spread.
+            </p>
+            <a href={wa} target="_blank" rel="noopener" class="link-underline sig__link">Order a tray →</a>
+          </div>
+        </article>
+
+        <article class="sig sig--reserved" data-reveal style="--reveal-delay:90ms">
+          <div class="sig__media sig__media--hold" aria-label="Hero photo coming soon">
+            <div class="sig__placeholder">
+              <span class="sig__ph-mark">Fire Feast X</span>
+              <span class="sig__ph-note">Hero photo coming soon</span>
+            </div>
+          </div>
+          <div class="sig__body">
+            <h3 class="sig__name">Rheetah's Signature Fire Feast X</h3>
+            <p class="sig__desc">
+              Fried rice built inside a whole pineapple. Shrimp, peppers, egg, and her own hand on
+              the seasoning. The second signature.
+            </p>
+            <span class="sig__link sig__link--muted">Photo pending Rita's hero shot</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · SELECTED WORK / CATERING -->
+  <section class="section-sm" id="catering">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">Selected work</span>
+          <h2 class="sec-title">Catering, at volume</h2>
+        </div>
+      </div>
+
+      <div class="lead" data-reveal>
+        <Image
+          src={bigPot}
+          alt="Rita cooking at the big pots at her festival stand"
+          widths={[600, 960, 1400]}
+          sizes="(min-width: 700px) 92vw, 100vw"
+          loading="lazy"
+          class="lead__img"
+        />
+        <div class="lead__overlay">
+          <p class="lead__line">The room she walks into, she fills. Single serves for eighty, a full buffet run, or a cocktail table of small chops.</p>
+        </div>
+      </div>
+
+      <div class="grid-4 tiles">
+        {catering.map((t, i) => (
+          <figure class="tile" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+            <Image
+              src={t.image}
+              alt={t.alt}
+              widths={[320, 480, 640]}
+              sizes="(min-width: 940px) 24vw, (min-width: 620px) 46vw, 92vw"
+              loading="lazy"
+              class="tile__img"
+            />
+            <figcaption class="tile__cap">
+              <span class="tile__label">{t.label}</span>
+              <span class="tile__caption">{t.caption}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="note" data-reveal>More catering shots are on the way from the kitchen.</p>
+    </div>
+  </section>
+
+  <!-- 5 · CURATED BOXES -->
+  <section class="section-sm" id="boxes">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">Curated boxes</span>
+          <h2 class="sec-title">For gifting, office runs, and celebrations</h2>
+        </div>
+      </div>
+      <p class="boxes__lede lede" data-reveal>
+        Curated boxes for gifting, office runs, and celebrations. Every order packed by hand.
+      </p>
+
+      <div class="boxes" data-reveal>
+        <figure class="box">
+          <Image src={boxBamboo} alt="A bamboo tray of jollof cups, small chops, fruit and drinks" widths={[400, 640, 800]} sizes="(min-width: 900px) 30vw, 46vw" loading="lazy" class="box__img" />
+        </figure>
+        <video class="box box--clip" autoplay muted loop playsinline preload="none" poster="/media/box-clip-1-poster.jpg" aria-label="A curated box being packed">
+          <source src="/media/box-clip-1.mp4" type="video/mp4" />
+        </video>
+        <figure class="box">
+          <Image src={boxGift} alt="A loaded gift box with malta, jollof, sides and plantain" widths={[360, 560, 720]} sizes="(min-width: 820px) 30vw, 46vw" loading="lazy" class="box__img" />
+        </figure>
+        <figure class="box">
+          <Image src={boxDelivery} alt="Sealed, branded delivery lunch packs" widths={[360, 560, 720]} sizes="(min-width: 820px) 30vw, 46vw" loading="lazy" class="box__img" />
+        </figure>
+        <figure class="box">
+          <Image src={boxWrapped} alt="Red gift-wrapped boxes ready to send" widths={[360, 560, 720]} sizes="(min-width: 820px) 30vw, 46vw" loading="lazy" class="box__img" />
+        </figure>
+        <video class="box box--clip" autoplay muted loop playsinline preload="none" poster="/media/box-clip-2-poster.jpg" aria-label="A gift box being wrapped">
+          <source src="/media/box-clip-2.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · IN THE KITCHEN -->
+  <section class="section-sm" id="kitchen">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div>
+          <span class="eyebrow">In the kitchen</span>
+          <h2 class="sec-title">The part people don't see</h2>
+        </div>
+      </div>
+      <p class="boxes__lede lede" data-reveal>
+        Cooking at volume, plating, and packing every order by hand.
+      </p>
+      <div class="grid-3 kitchen">
+        {kitchen.map((k, i) => (
+          <figure class="kframe" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+            <Image src={k.image} alt={k.alt} widths={[320, 480, 640]} sizes="(min-width: 940px) 30vw, 92vw" loading="lazy" class="kframe__img" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · FRUITY ZOBO -->
+  <section class="section feature feature--alt" id="drinks">
+    <div class="wrap feature__inner">
+      <div class="feature__copy" data-reveal>
+        <span class="eyebrow">Fruity Zobo</span>
+        <h2 class="feature__title">Rheetah's Fruity Zobo.</h2>
+        <p>
+          Hibiscus, ginger, pineapple, orange, lemon. Natural, no artificial colours, no
+          preservatives. 200ml, best served chilled.
+        </p>
+        <ul role="list" class="tags">
+          <li>Hibiscus</li><li>Ginger</li><li>Pineapple</li><li>Orange</li><li>Lemon</li>
+        </ul>
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">Order the drinks <span class="arrow">→</span></a>
+      </div>
+      <div class="feature__media" data-reveal>
+        <Image
+          src={zobo}
+          alt="Two flavours of Rheetah's Fruity Zobo held up on a Lagos rooftop"
+          widths={[480, 768, 960]}
+          sizes="(min-width: 860px) 44vw, 92vw"
+          loading="lazy"
+          class="feature__img feature__img--tall"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · TEAM -->
+  <section class="section-sm" id="team">
+    <div class="wrap">
+      <div class="hood" data-reveal>
+        <Image
+          src={team}
+          alt="The Rheetah's Kitchen crew in branded tees at the GTCO Food and Drink Festival stand"
+          widths={[600, 960, 1400]}
+          sizes="(min-width: 700px) 92vw, 100vw"
+          loading="lazy"
+          class="hood__img"
+        />
+        <div class="hood__overlay">
+          <span class="eyebrow hood__eyebrow">The team</span>
+          <h2 class="hood__title">The people behind the pans.</h2>
+          <p>The Rheetah's Kitchen crew at the GTCO Food and Drink Festival.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · GWR TEASER -->
+  <section class="section-sm">
+    <div class="wrap">
+      <a href="/gwr" class="gwrteaser" data-reveal>
+        <div class="gwrteaser__copy">
+          <span class="gwrteaser__eyebrow">The record. The cause. The impact.</span>
+          <h2 class="gwrteaser__title">Attempting the Guinness World Record for the longest cooking marathon by an individual.</h2>
+          <p>Self-directed and community-powered. Food cooked during the attempt is shared and donated to charity partners across Lagos.</p>
+          <span class="gwrteaser__cta">Read the full attempt <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 10 · CONTACT -->
+  <section class="section-sm" id="contact">
+    <div class="wrap">
+      <div class="contact" data-reveal>
+        <div class="contact__intro">
+          <span class="eyebrow">Contact</span>
+          <h2 class="contact__title">Order, cater, or just say hello.</h2>
+          <p>Message on WhatsApp for trays, boxes, and catering. We reply fast.</p>
+          <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">Order on WhatsApp <span class="arrow">→</span></a>
+        </div>
+        <ul role="list" class="contact__list">
+          <li>
+            <span class="contact__k">WhatsApp &amp; Call</span>
+            <a href="tel:+2349129508724" class="contact__v">+234 912 950 8724</a>
+          </li>
+          <li>
+            <span class="contact__k">Email</span>
+            <a href="mailto:rheetahskitchen@gmail.com" class="contact__v">rheetahskitchen@gmail.com</a>
+          </li>
+          <li>
+            <span class="contact__k">Instagram</span>
+            <a href="https://www.instagram.com/rheetahs_kitchen/" target="_blank" rel="noopener" class="contact__v">@rheetahs_kitchen</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* 1 · HERO */
+  .hero {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: min(90vh, 46rem);
+    overflow: hidden;
+    background: var(--brown-deep);
+  }
+  .hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(42,22,7,0.28) 0%, rgba(42,22,7,0.05) 34%, rgba(42,22,7,0.62) 82%, rgba(42,22,7,0.86) 100%);
+  }
+  .hero__inner { position: relative; z-index: 2; padding-block: clamp(2.5rem, 8vw, 6rem); }
+  .hero__copy { max-width: 40rem; }
+  .hero__eyebrow { color: var(--cream); opacity: 0.92; }
+  .hero__eyebrow::before { background: var(--orange); opacity: 1; }
+  .hero__title {
+    color: var(--cream);
+    font-size: var(--step-6);
+    margin-top: var(--space-s);
+    letter-spacing: -0.025em;
+  }
+  .hero__title em { font-style: italic; color: var(--orange); }
+  @media (max-width: 480px) { .hero__title { font-size: var(--step-5); } }
+  .hero__strip {
+    margin-top: var(--space-m);
+    color: var(--cream);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-size: var(--step-1);
+  }
+  .hero__cta {
+    margin-top: var(--space-l);
+    background: var(--orange);
+    color: #fff;
+  }
+  .hero__cta:hover { background: var(--cream); color: var(--brown); transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+  /* FEATURE (Story + Zobo) */
+  .feature { background: var(--paper-warm); }
+  .feature__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+  .feature__img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+  }
+  .feature__img--tall { aspect-ratio: 3 / 4; }
+  .feature__title { font-size: var(--step-4); margin-block: var(--space-s) var(--space-m); }
+  .feature__copy p { color: var(--ink-soft); font-size: var(--step-1); max-width: 48ch; }
+  .feature__copy p + p { margin-top: var(--space-s); }
+  .feature--alt { background: var(--cream); }
+
+  .timeline {
+    display: grid;
+    gap: var(--space-s);
+    margin-top: var(--space-l);
+    padding-top: var(--space-l);
+    border-top: 1px solid var(--line);
+  }
+  .timeline li { display: grid; grid-template-columns: 4.2rem 1fr; gap: var(--space-s); align-items: baseline; }
+  .timeline strong { font-family: var(--font-display); font-size: var(--step-2); color: var(--orange); line-height: 1; }
+  .timeline span { color: var(--ink-soft); font-size: var(--step--1); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5em; margin-block: var(--space-m) var(--space-l); }
+  .tags li {
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--brown-soft);
+    background: var(--cream-card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.35em 0.9em;
+  }
+  .feature--alt .tags li { background: var(--paper-warm); }
+
+  @media (min-width: 860px) {
+    .feature__inner { grid-template-columns: 0.92fr 1.08fr; gap: var(--space-2xl); }
+  }
+
+  /* 3 · SIGNATURES */
+  .signatures {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-l);
+  }
+  .sig {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+  }
+  .sig:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: var(--line); }
+  .sig__media { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-warm); }
+  .sig__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
+  .sig:hover .sig__img { transform: scale(1.04); }
+  .sig__tag {
+    position: absolute;
+    top: var(--space-s);
+    left: var(--space-s);
+    background: var(--orange);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4em 0.9em;
+    border-radius: 999px;
+  }
+  .sig__media--hold {
+    display: grid;
+    place-items: center;
+    background:
+      repeating-linear-gradient(-45deg, transparent, transparent 14px, color-mix(in srgb, var(--brown) 5%, transparent) 14px, color-mix(in srgb, var(--brown) 5%, transparent) 15px),
+      var(--paper-warm);
+    border-bottom: 1px dashed var(--line);
+  }
+  .sig__placeholder { text-align: center; display: grid; gap: 0.4em; padding: var(--space-l); }
+  .sig__ph-mark { font-family: var(--font-display); font-style: italic; font-size: var(--step-3); color: var(--brown-soft); }
+  .sig__ph-note { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .sig__body { padding: var(--space-l); display: flex; flex-direction: column; gap: 0.5em; flex: 1; }
+  .sig__name { font-size: var(--step-2); }
+  .sig__desc { color: var(--ink-soft); }
+  .sig__link { display: inline-block; margin-top: var(--space-2xs); color: var(--orange); font-weight: 600; }
+  .sig__link--muted { color: var(--ink-faint); font-weight: 500; font-size: var(--step--1); }
+  @media (min-width: 780px) { .signatures { grid-template-columns: 1fr 1fr; } }
+
+  /* 4 · CATERING */
+  .lead {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    margin-bottom: var(--space-m);
+  }
+  @media (min-width: 700px) { .lead { aspect-ratio: 16 / 8; } }
+  .lead__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+  .lead__overlay {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: clamp(1.5rem, 5vw, 3rem);
+    background: linear-gradient(0deg, rgba(42,22,7,0.86) 0%, rgba(42,22,7,0.32) 55%, transparent 100%);
+  }
+  .lead__line { color: var(--cream); font-family: var(--font-display); font-style: italic; font-size: var(--step-2); max-width: 30ch; line-height: 1.25; }
+
+  .tiles { gap: var(--space-s); }
+  .tile { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 4; }
+  .tile__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
+  .tile:hover .tile__img { transform: scale(1.05); }
+  .tile__cap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.15em;
+    padding: var(--space-s);
+    background: linear-gradient(0deg, rgba(42,22,7,0.82) 0%, rgba(42,22,7,0.1) 52%, transparent 100%);
+  }
+  .tile__label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--orange) 88%, white); }
+  .tile__caption { font-family: var(--font-display); font-style: italic; font-size: var(--step-1); color: var(--cream); }
+  .note { margin-top: var(--space-m); font-size: var(--step--1); color: var(--ink-faint); }
+
+  /* 5 · BOXES */
+  .boxes__lede { max-width: 46ch; margin-bottom: var(--space-l); }
+  .boxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-s);
+  }
+  .box { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--paper-warm); }
+  .box__img, .box--clip { width: 100%; height: 100%; object-fit: cover; }
+  @media (min-width: 560px) { .boxes { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 900px) { .boxes { grid-template-columns: repeat(3, 1fr); } }
+
+  /* 6 · KITCHEN */
+  .kframe { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 5; }
+  .kframe__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease); }
+  .kframe:hover .kframe__img { transform: scale(1.04); }
+
+  /* 8 · TEAM (hood) */
+  .hood { position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 3; }
+  @media (min-width: 700px) { .hood { aspect-ratio: 3 / 2; } }
+  .hood__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+  .hood__overlay {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    background: linear-gradient(0deg, rgba(42,22,7,0.86) 0%, rgba(42,22,7,0.32) 55%, transparent 100%);
+  }
+  .hood__eyebrow { color: var(--cream); }
+  .hood__eyebrow::before { background: var(--orange); opacity: 1; }
+  .hood__title { color: var(--cream); font-size: var(--step-3); max-width: 20ch; margin-top: var(--space-s); }
+  .hood__overlay p { color: color-mix(in srgb, var(--cream) 86%, transparent); max-width: 44ch; margin-top: var(--space-2xs); }
+
+  /* 9 · GWR TEASER */
+  .gwrteaser {
+    display: block;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding: clamp(2rem, 6vw, 4rem);
+    background:
+      radial-gradient(120% 140% at 85% 0%, color-mix(in srgb, var(--gwr-gold) 22%, transparent) 0%, transparent 55%),
+      var(--gwr-ink);
+    border: 1px solid color-mix(in srgb, var(--gwr-gold) 30%, transparent);
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  }
+  .gwrteaser:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.6); }
+  .gwrteaser__copy { max-width: 52ch; }
+  .gwrteaser__eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gwr-gold); }
+  .gwrteaser__title { color: var(--gwr-cream); font-size: var(--step-3); margin-top: var(--space-s); letter-spacing: -0.01em; }
+  .gwrteaser__copy p { color: color-mix(in srgb, var(--gwr-cream) 78%, transparent); margin-top: var(--space-s); }
+  .gwrteaser__cta { display: inline-block; margin-top: var(--space-m); color: var(--gwr-gold); font-weight: 600; }
+  .gwrteaser:hover .arrow { transform: translateX(3px); }
+  .arrow { transition: transform 0.35s var(--ease); display: inline-block; }
+
+  /* 10 · CONTACT */
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.75rem, 5vw, 3.25rem);
+  }
+  .contact__title { font-size: var(--step-3); margin-block: var(--space-s) var(--space-s); }
+  .contact__intro p { color: var(--ink-soft); max-width: 36ch; margin-bottom: var(--space-l); }
+  .contact__list { display: grid; gap: var(--space-m); align-content: start; }
+  .contact__list li { display: grid; gap: 0.2em; border-top: 1px solid var(--line-soft); padding-top: var(--space-s); }
+  .contact__k { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); }
+  .contact__v { font-family: var(--font-display); font-size: var(--step-1); color: var(--brown); }
+  .contact__v:hover { color: var(--orange); }
+  @media (min-width: 780px) { .contact { grid-template-columns: 1.1fr 0.9fr; } }
+</style>
+
+<script>
+  // Ensure hero video plays on iOS/low-power where autoplay may stall
+  const v = document.querySelector('.hero__video') as HTMLVideoElement | null;
+  if (v) {
+    const tryPlay = () => v.play().catch(() => {});
+    if (v.readyState >= 2) tryPlay();
+    v.addEventListener('canplay', tryPlay, { once: true });
+  }
+</script>

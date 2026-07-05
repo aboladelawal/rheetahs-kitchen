@@ -1,0 +1,264 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoCream from '../assets/img/logo-cream.png';
+import portrait from '../assets/img/gwr-portrait.jpg';
+
+const wa = 'https://wa.me/2349129508724';
+const press = 'mailto:rheetahskitchen@gmail.com?subject=Press%20%26%20media%20—%20Rheetah%27s%20Kitchen%20GWR';
+const year = new Date().getFullYear();
+const canonical = new URL('/gwr', Astro.site);
+const title = 'The GWR Attempt — Rheetah\'s Kitchen';
+const description =
+  "Chef Rheetah is preparing to attempt the Guinness World Record for the longest cooking marathon by an individual — self-directed, community-powered, and in honour of her mother's legacy.";
+---
+
+<!doctype html>
+<html lang="en" data-theme="gwr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0E0B08" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Rheetah's Kitchen" />
+    <meta property="og:url" content={canonical} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="gwr">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="gh">
+      <div class="wrap gh__inner">
+        <a href="/" class="gh__brand" aria-label="Rheetah's Kitchen — home">
+          <Image src={logoCream} alt="Rheetah's Kitchen" widths={[120, 180]} loading="eager" class="gh__logo" />
+        </a>
+        <div class="gh__actions">
+          <a href="/" class="gh__back">← Back to site</a>
+          <a href={wa} target="_blank" rel="noopener" class="gbtn gbtn--solid">Order on WhatsApp</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="ghero">
+        <div class="wrap ghero__inner">
+          <div class="ghero__copy">
+            <span class="geyebrow">The record. The cause. The impact.</span>
+            <h1 class="ghero__title">
+              Attempting the Guinness World Record for the
+              <em>Longest Cooking Marathon by an Individual.</em>
+            </h1>
+            <ul role="list" class="gstats">
+              <li><strong>One kitchen</strong></li>
+              <li><strong>Days on her feet</strong></li>
+              <li><strong>One cause</strong></li>
+            </ul>
+          </div>
+          <figure class="ghero__portrait">
+            <Image
+              src={portrait}
+              alt="Chef Rita Mensah in her chef whites"
+              widths={[420, 640, 840]}
+              sizes="(min-width: 900px) 40vw, 88vw"
+              loading="eager"
+              class="ghero__img"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- BODY -->
+      <section class="gbody">
+        <div class="wrap gbody__inner">
+          <div class="gbody__prose">
+            <p>
+              Rita is preparing to attempt the Guinness World Record for the longest cooking marathon
+              by an individual. Self directed and community powered, built on shared support and
+              volunteer energy.
+            </p>
+            <p>
+              Food cooked during the attempt is shared with everyone there and donated to charity
+              partners across Lagos. More than a record, it is a platform to inspire healthier living,
+              back communities, and leave something lasting, in honour of her mother's legacy.
+            </p>
+          </div>
+
+          <aside class="grecord">
+            <span class="grecord__k">The record to beat</span>
+            <p class="grecord__v">140 hours, 11 minutes, 11 seconds</p>
+            <p class="grecord__meta">Set by Evette Quoibia in Melbourne, February 2024.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CTAs -->
+      <section class="gcta">
+        <div class="wrap gcta__inner">
+          <div class="gcta__lead">
+            <span class="geyebrow">Brands. Sponsors. Media partners.</span>
+            <h2 class="gcta__title">Let's build something unforgettable.</h2>
+          </div>
+          <div class="gcta__btns">
+            <a href={wa} target="_blank" rel="noopener" class="gbtn gbtn--solid">Become a partner →</a>
+            <a href={press} class="gbtn gbtn--ghost">Press &amp; media →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLOSING STRIP -->
+      <section class="gclose">
+        <div class="wrap gclose__inner">
+          <p class="gclose__words">Discipline. Purpose. Community. Legacy.</p>
+          <p class="gclose__line">Together, we can make history.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="gfoot">
+      <div class="wrap gfoot__inner">
+        <p class="gfoot__built">
+          Designed and built by
+          <a href="https://agtconsults.com/" target="_blank" rel="noopener">Alpha Global Tech and Consulting</a>
+        </p>
+        <p class="gfoot__legal">© {year} Rheetah's Kitchen</p>
+      </div>
+    </footer>
+
+    <style>
+      .gwr { background: var(--gwr-ink); color: var(--gwr-cream); }
+
+      .geyebrow {
+        font-family: var(--font-body);
+        font-size: var(--step--1);
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gwr-gold);
+      }
+
+      .gbtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0.85em 1.6em;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: var(--step--1);
+        transition: transform 0.35s var(--ease), background-color 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+      }
+      .gbtn--solid { background: var(--gwr-gold); color: var(--gwr-ink); }
+      .gbtn--solid:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--gwr-gold) 85%, white); }
+      .gbtn--ghost { border: 1px solid color-mix(in srgb, var(--gwr-gold) 45%, transparent); color: var(--gwr-cream); }
+      .gbtn--ghost:hover { border-color: var(--gwr-gold); color: var(--gwr-gold); transform: translateY(-2px); }
+
+      /* Header */
+      .gh {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: color-mix(in srgb, var(--gwr-ink) 86%, transparent);
+        backdrop-filter: saturate(140%) blur(14px);
+        -webkit-backdrop-filter: saturate(140%) blur(14px);
+        border-bottom: 1px solid color-mix(in srgb, var(--gwr-gold) 18%, transparent);
+      }
+      .gh__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-m); min-height: 4.5rem; }
+      .gh__logo { height: clamp(1.9rem, 1.6rem + 1vw, 2.3rem); width: auto; }
+      .gh__actions { display: flex; align-items: center; gap: var(--space-m); }
+      .gh__back { font-size: var(--step--1); color: color-mix(in srgb, var(--gwr-cream) 72%, transparent); }
+      .gh__back:hover { color: var(--gwr-gold); }
+      @media (max-width: 560px) { .gh__back { display: none; } }
+
+      /* Hero */
+      .ghero { padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2rem, 5vw, 3.5rem); }
+      .ghero__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: center; }
+      .ghero__title {
+        font-family: var(--font-display);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.015em;
+        font-size: var(--step-5);
+        color: var(--gwr-cream);
+        margin-top: var(--space-m);
+        text-wrap: balance;
+      }
+      .ghero__title em { font-style: italic; color: var(--gwr-gold); }
+      @media (max-width: 480px) { .ghero__title { font-size: var(--step-4); } }
+      .gstats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-s) var(--space-l);
+        margin-top: var(--space-xl);
+        padding-top: var(--space-l);
+        border-top: 1px solid color-mix(in srgb, var(--gwr-gold) 22%, transparent);
+      }
+      .gstats li { position: relative; }
+      .gstats li + li { padding-left: var(--space-l); border-left: 1px solid color-mix(in srgb, var(--gwr-gold) 22%, transparent); }
+      .gstats strong { font-family: var(--font-display); font-size: var(--step-1); font-weight: 400; color: var(--gwr-cream); }
+
+      .ghero__portrait {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--gwr-gold) 40%, transparent);
+        box-shadow: 0 40px 90px -40px rgba(0,0,0,0.8);
+      }
+      .ghero__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+      @media (min-width: 900px) {
+        .ghero__inner { grid-template-columns: 1.15fr 0.85fr; gap: var(--space-2xl); }
+      }
+
+      /* Body */
+      .gbody { padding-block: clamp(2rem, 5vw, 3.5rem); }
+      .gbody__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: start; }
+      .gbody__prose p { color: color-mix(in srgb, var(--gwr-cream) 82%, transparent); font-size: var(--step-1); line-height: 1.6; max-width: 52ch; }
+      .gbody__prose p + p { margin-top: var(--space-m); }
+      .grecord {
+        background: var(--gwr-panel);
+        border: 1px solid color-mix(in srgb, var(--gwr-gold) 28%, transparent);
+        border-radius: var(--radius-lg);
+        padding: clamp(1.5rem, 4vw, 2.25rem);
+      }
+      .grecord__k { font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase; color: var(--gwr-gold); }
+      .grecord__v { font-family: var(--font-display); font-size: var(--step-3); color: var(--gwr-cream); margin-top: var(--space-s); line-height: 1.1; }
+      .grecord__meta { color: color-mix(in srgb, var(--gwr-cream) 66%, transparent); margin-top: var(--space-s); font-size: var(--step--1); }
+      @media (min-width: 860px) { .gbody__inner { grid-template-columns: 1.4fr 1fr; gap: var(--space-2xl); } }
+
+      /* CTA */
+      .gcta { padding-block: clamp(2rem, 5vw, 3.5rem); }
+      .gcta__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-l);
+        padding: clamp(1.75rem, 5vw, 3rem);
+        border-radius: var(--radius-lg);
+        background:
+          radial-gradient(120% 160% at 100% 0%, color-mix(in srgb, var(--gwr-gold) 18%, transparent) 0%, transparent 55%),
+          var(--gwr-panel);
+        border: 1px solid color-mix(in srgb, var(--gwr-gold) 22%, transparent);
+      }
+      .gcta__title { font-family: var(--font-display); font-weight: 400; font-size: var(--step-3); color: var(--gwr-cream); margin-top: var(--space-s); }
+      .gcta__btns { display: flex; flex-wrap: wrap; gap: var(--space-s); }
+
+      /* Closing strip */
+      .gclose { padding-block: clamp(2.5rem, 6vw, 4.5rem); text-align: center; }
+      .gclose__words { font-size: var(--step--1); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gwr-gold); }
+      .gclose__line { font-family: var(--font-display); font-style: italic; font-size: var(--step-4); color: var(--gwr-cream); margin-top: var(--space-s); }
+
+      /* Footer */
+      .gfoot { border-top: 1px solid color-mix(in srgb, var(--gwr-gold) 16%, transparent); padding-block: var(--space-l); }
+      .gfoot__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2xs) var(--space-l); }
+      .gfoot__built { font-size: var(--step--1); color: color-mix(in srgb, var(--gwr-cream) 70%, transparent); }
+      .gfoot__built a { color: var(--gwr-cream); font-weight: 600; border-bottom: 1px solid var(--gwr-gold); }
+      .gfoot__built a:hover { color: var(--gwr-gold); }
+      .gfoot__legal { font-size: var(--step--1); color: color-mix(in srgb, var(--gwr-cream) 50%, transparent); }
+    </style>
+  </body>
+</html>

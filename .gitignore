@@ -1,8 +1,17 @@
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-*.log
+# build output
+dist/
+.output/
+# dependencies
 node_modules/
+# astro
+.astro/
+# environment
 .env
-.env.local
+.env.production
+# macOS
+.DS_Store
+# logs
+npm-debug.log*
+# vercel / netlify
+.vercel
+.netlify

@@ -1,94 +1,71 @@
-# Rheetah's Kitchen — Personal Brand Site
+# Rheetah's Kitchen
 
-Single-page editorial site for Rita Mensah (Chef Rheetah), founder of Rheetah's Kitchen, Lagos.
+Editorial brand site for Rita Mensah (Chef Rheetah), food vendor and founder of Rheetah's Kitchen, Lagos. Built by [Alpha Global Tech and Consulting](https://agtconsults.com/).
 
-## What's inside
+Astro static site. Vanilla CSS with design tokens, no framework, no UI kit. Reference look: GAIL's Bakery — cream ground, one warm orange accent, Fraunces over Inter, sticky compact nav, magazine-style sections.
+
+## Stack
+
+- **Astro 5** (static output). Images optimised at build via `astro:assets`.
+- **Fonts:** Fraunces (display serif) + Inter (body), self-hosted via `@fontsource-variable`.
+- **CSS:** one design-token system in `src/styles/global.css`. Minified with lightningcss.
+
+## Develop
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # → dist/
+npm run preview  # serve the built site
+```
+
+## Structure
 
 ```
-index.html               — the whole site (one file, inline CSS + JS)
-assets/
-  video/
-    hero.mp4             — hero loop, high bitrate (~7.7MB, desktop)
-    hero-mobile.mp4      — smaller version for mobile (~3.7MB)
-    hero-poster.jpg      — fallback poster image
-  images/
-    portrait.jpg         — Chef Rheetah formal chef-coat portrait
-    favicon.png          — browser tab icon (logo crop)
-    og-image.jpg         — 1200×630 link preview card
-    logo-crimson-sm.png  — transparent logo, crimson (for cream backgrounds)
-    logo-cream-sm.png    — transparent logo, cream (for crimson/dark backgrounds)
-    work-*.jpg           — portfolio photos for the work sections
+public/media/            # video + posters, served as-is (hero, box clips)
+src/
+  assets/img/            # stills + logos, optimised by Astro
+  components/            # Nav, Footer, ProductCard, Marquee
+  layouts/Base.astro     # cream homepage shell (Nav + Footer + SEO head)
+  pages/
+    index.astro          # single editorial scroll (all sections)
+    gwr.astro            # standalone dark/gold Guinness World Record page
+  styles/global.css      # design tokens + shared helpers
 ```
 
-Total site weight: ~16MB. Loads fast on Lagos mobile networks because the heaviest assets (video, hi-res photos) are lazy-loaded.
+## Pages & sections
 
-## Sections, in order
+- **`/`** — Hero (video) · Story ("In her honour") · Signatures · Catering grid · Curated boxes · In the kitchen · Fruity Zobo · Team · GWR teaser · Contact. Nav links are in-page anchors.
+- **`/gwr`** — dedicated near-black + gold prestige page for the Guinness World Record attempt (own colour scheme, cream logo).
 
-1. **Hero** — layered composition: logo, eyebrow pill, big serif headline, byline, services, video card with gold corner ticks, bottom credentials strip
-2. **Story** — editorial intro + the clickable CEO card → opens Rita's bio modal
-3. **Catering & Events** — first work category, big hero image + two supporting tiles
-4. **Signature Dishes** — three numbered (i/ii/iii) editorial spreads: pineapple boat pasta, seafood okra, akara & pap
-5. **Curated Boxes & Gifting** — date box, picnic basket, branded packs
-6. **GTCO Feature** — gold banner, big headline, two GTCO photos, pull quote, 4 stats strip
-7. **Cook-a-thon** — GWR attempt, 2026/27 (TBC), become-a-partner CTAs
-8. **Behind the Service** — cinematic split with pull quote, then a 3-tile BTS grid
-9. **Contact** — WhatsApp, call, IG, email — all clickable
-10. **Footer**
+## Brand tokens (`global.css`)
 
-## How to deploy
+```
+--brown #41210A   --brown-deep #2A1607   --brown-soft #6B4A33
+--orange #F27326  (single accent)
+--cream #F8F1E4   --cream-card #FFFDF8
+GWR scope: --gwr-ink #0E0B08  --gwr-panel #14100B  --gwr-gold #C7A15A  --gwr-cream #F2E9D6
+```
 
-**Netlify (fastest)**
-1. Go to netlify.com → drag the entire `rheetahs-kitchen-site` folder onto the dashboard
-2. You get a URL like `chef-rheetah.netlify.app` instantly
-3. To use a custom domain (e.g. `rheetahskitchen.com`), buy the domain → point DNS to Netlify
+Semantic aliases (`--ink`, `--paper`, `--terracotta`, …) map onto the brand tokens so the forked GAIL's components reskin cleanly.
 
-**Vercel**
-1. vercel.com → new project → upload folder → deploy
+## Editing
 
-**GitHub Pages**
-1. Create a repo, push the folder contents
-2. Settings → Pages → Source: main branch → save
+- **Copy** lives in `src/pages/index.astro` and `src/pages/gwr.astro`.
+- **Swap a photo:** replace the file in `src/assets/img/` (Astro re-optimises on build) or `public/media/` for video.
+- **Contact / WhatsApp:** phone `+234 912 950 8724`, WhatsApp `wa.me/2349129508724`, email `rheetahskitchen@gmail.com`, IG `@rheetahs_kitchen`.
 
-No build step. No framework. Static HTML — drops onto any web host.
+## Open items (waiting on the client)
 
-## Things to confirm with Rita
+- **Fire Feast X signature card:** hero photo pending — card ships with a reserved placeholder frame.
+- **Jollof card image:** currently the best jollof shot from the existing content; swap when a hero shot arrives.
+- **Restaurant address & hours:** pending — Contact runs without a location block until provided (no address invented).
+- **More catering / boxes / kitchen shots:** slots are easy to extend as photos come in.
 
-I wrote the copy in her voice based on the assets and brand. These spots need her sign-off:
+## Facts that must stay correct
 
-1. **Bio paragraphs in the modal**. I assumed:
-   - Founded Rheetah's Kitchen in 2020
-   - Featured Vendor at GTCO Food & Drink Fair, 2025
-   - Partnered with Squad by Sterling Bank for payments
-   
-   If any of these years or details are wrong, edit directly in `index.html` (search for `class="modal-bio"`).
+Food vendor, chef, and founder (not a personal chef). Started cooking 2019, launched Rheetah's Kitchen 2021. Always "in her honour," never "in memory." Self-taught — no "trained under" claim, no Hilda Baci. GTCO **Food and Drink Festival** 2026 (9th edition), one of 204 vendors, sold out three days running; payments partner **Squad by GTCO**. GWR longest cooking marathon (individual) current holder: Evette Quoibia, 140 hr 11 min 11 sec, Melbourne, February 2024.
 
-2. **Story intro paragraph** (Section 01). Confirm the founding-story phrasing rings true.
+## Deploy
 
-3. **Cook-a-thon details** (Section 05). Placeholders:
-   - Target: "Beat 140+ hrs"
-   - Window: "2026 / 27" with "Date to be confirmed"
-   - For: "Community plates" / "Every hour cooked, fed forward"
-   
-   Once the plan is locked, update these values.
-
-4. **GTCO feature copy**. The quote about her stand having "the operational discipline of a restaurant ten times her size" is mine — confirm she likes it or replace.
-
-5. **Email address**: I used `hello@rheetahskitchen.com`. If she doesn't own that domain yet, buy it + set up Google Workspace, OR replace with whatever email she actually uses for brands/press. Find/replace in `index.html`.
-
-6. **Copyright year**: footer currently says "© 2026". Update annually.
-
-## Editing tips
-
-- All copy lives in `index.html`. No separate files. Open in any text editor.
-- Brand colours are CSS variables at the top of the `<style>` block. Search for `--crimson:` to find them.
-- To swap a photo: replace the file in `assets/images/` with the same filename. No code changes needed.
-- To swap the hero video: replace `assets/video/hero.mp4` (desktop) and/or `hero-mobile.mp4`. Keep vertical (720×1280) for best mobile performance.
-- Section IDs for direct linking: `#story`, `#work`, `#feature`, `#cookathon`, `#contact`
-
-## Browser support
-
-Tested in modern Chrome, Safari, Firefox. Works on iOS Safari (autoplay video uses `muted playsinline`). Designed mobile-first at 390px viewport, scales up to 1440px+ desktop.
-
----
-
-Questions: ask Bolade.
+Vercel (`vercel.json` sets the Astro preset) or Netlify (`netlify.toml`). Build command `npm run build`, output `dist/`.
