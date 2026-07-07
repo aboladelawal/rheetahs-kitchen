@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import EditorialRow from '../components/EditorialRow.astro';
+
+const stats = [
+  { k: 'Target', v: 'GWR cook-a-thon' },
+  { k: 'Location', v: 'Lagos' },
+  { k: 'Window', v: '2026/27 (TBC)' },
+  { k: 'For', v: 'Community plates' },
+];
+const partner = "https://wa.me/2349129508724?text=" + encodeURIComponent("Hi Chef Rheetah, I'd like to partner on the GWR cook-a-thon.");
+const press = "mailto:rheetahskitchen@gmail.com?subject=" + encodeURIComponent("Press & media — Rheetah's Kitchen GWR");
+---
+
+<Base
+  title="The GWR cook-a-thon — Rheetah's Kitchen"
+  description="Rita Mensah is planning a Guinness World Records cook-a-thon attempt in Lagos. Food cooked on the day is shared with attendees and donated to charity partners across Lagos, in honour of her mother."
+  image="/images/big-pot.jpg"
+>
+  <PageHero
+    image="/images/big-pot.jpg"
+    alt="Rita cooking at the big pots"
+    eyebrow="The record · The cause · The impact"
+    title="A Guinness World Records cook-a-thon attempt."
+    sub="In honour of her mother's legacy."
+    height="tall"
+    position="center 35%"
+  />
+
+  <!-- BODY -->
+  <section class="section gwr-body">
+    <div class="wrap gwr-body__inner" data-reveal>
+      <p class="gwr-body__p">
+        Rita is planning a Guinness World Records cook-a-thon attempt. Self-directed and
+        community-powered, built on shared support and volunteer energy.
+      </p>
+      <p class="gwr-body__p">
+        Food cooked during the attempt is shared with everyone there and donated to charity partners
+        across Lagos. More than a record, it is a way to back her community and leave something
+        lasting, in honour of her mother's legacy.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="gwr-stats">
+    <div class="wrap gwr-stats__grid">
+      {stats.map((s, i) => (
+        <div class="gwr-stat" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+          <span class="gwr-stat__k">{s.k}</span>
+          <span class="gwr-stat__v">{s.v}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- COMMUNITY PLATES -->
+  <EditorialRow
+    image="/images/kitchen-packing.jpg"
+    alt="Hands packing meals by hand"
+    eyebrow="Community plates"
+    title="Every plate goes somewhere."
+    body={['Food cooked during the attempt is shared with attendees on the day and donated to charity partners across Lagos. The record is the reason. The plates are the point.']}
+    side="left"
+    ground="sand"
+    blob={true}
+  />
+
+  <!-- CTA -->
+  <section class="gwr-cta">
+    <div class="wrap gwr-cta__inner" data-reveal>
+      <span class="eyebrow gwr-cta__eyebrow">Brands · Sponsors · Media</span>
+      <h2 class="gwr-cta__title">Let's build something that lasts.</h2>
+      <div class="gwr-cta__btns">
+        <a href={partner} target="_blank" rel="noopener" class="btn btn--cream">Become a partner <span class="arw">→</span></a>
+        <a href={press} class="btn btn--line gwr-cta__ghost">Press & media <span class="arw">→</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gwr-body { background: var(--cream); }
+  .gwr-body__inner { max-width: 720px; }
+  .gwr-body__p { font-family: var(--serif); font-size: clamp(20px, 2.6vw, 26px); line-height: 1.5; color: var(--brown); }
+  .gwr-body__p + .gwr-body__p { margin-top: 20px; }
+
+  .gwr-stats { background: var(--cream); padding-bottom: clamp(40px, 6vh, 72px); }
+  .gwr-stats__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+  .gwr-stat { display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .gwr-stat__k { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .gwr-stat__v { font-family: var(--serif); font-size: var(--fs-h3); color: var(--brown); line-height: 1.1; }
+  @media (min-width: 760px) { .gwr-stats__grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .gwr-cta { background: var(--brown-deep); color: var(--cream); }
+  .gwr-cta__inner { text-align: center; padding-block: clamp(56px, 9vh, 100px); max-width: 640px; margin-inline: auto; }
+  .gwr-cta__eyebrow { color: var(--gold); }
+  .gwr-cta__title { color: var(--cream); font-size: var(--fs-h1); margin-top: 12px; }
+  .gwr-cta__btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 28px; }
+  .gwr-cta__ghost { color: var(--cream); border-color: rgba(247,241,232,0.5); }
+  .gwr-cta__ghost:hover { background: var(--cream); color: var(--brown); border-color: var(--cream); }
+</style>

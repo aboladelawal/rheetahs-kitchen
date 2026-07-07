@@ -1,0 +1,37 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+  eyebrow?: string;
+  title: string;
+  sub?: string;
+  height?: 'short' | 'tall';
+  position?: string; // object-position
+}
+const { image, alt, eyebrow, title, sub, height = 'short', position = 'center' } = Astro.props;
+---
+
+<section class:list={['phero', `phero--${height}`]} aria-label={title}>
+  <img class="phero__img" src={image} alt={alt} style={`object-position:${position}`} />
+  <div class="phero__scrim"></div>
+  <div class="wrap phero__inner">
+    {eyebrow && <span class="eyebrow phero__eyebrow">{eyebrow}</span>}
+    <h1 class="phero__title">{title}</h1>
+    {sub && <p class="phero__sub">{sub}</p>}
+  </div>
+</section>
+
+<style>
+  .phero { position: relative; display: grid; align-items: end; overflow: hidden; background: var(--brown-deep); }
+  .phero--short { min-height: min(58vh, 460px); }
+  .phero--tall { min-height: min(82vh, 680px); }
+  .phero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .phero__scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(42,22,7,0.5) 0%, rgba(42,22,7,0.15) 40%, rgba(42,22,7,0.55) 78%, rgba(42,22,7,0.88) 100%);
+  }
+  .phero__inner { position: relative; z-index: 2; padding-block: clamp(32px, 6vh, 64px); }
+  .phero__eyebrow { color: var(--gold-soft); }
+  .phero__title { color: var(--cream); font-size: var(--fs-hero); line-height: 0.98; letter-spacing: -0.02em; margin-top: 14px; max-width: 16ch; text-shadow: 0 2px 30px rgba(0,0,0,0.3); }
+  .phero__sub { color: color-mix(in srgb, var(--cream) 90%, transparent); font-family: var(--serif); font-size: clamp(16px, 3vw, 22px); margin-top: 16px; max-width: 42ch; text-shadow: 0 1px 16px rgba(0,0,0,0.4); }
+</style>

@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import DishDetail from '../../components/DishDetail.astro';
+---
+
+<Base
+  title="Fire Feast X — Rheetah's Kitchen"
+  description="Fire Feast X by Rheetah's Kitchen. Fried rice served inside a pineapple, Rita's signature presentation for events and gifting."
+  image="/images/fire-feast-x.jpg"
+>
+  {/* PLACEHOLDER: dish copy to be confirmed by Rita */}
+  <DishDetail
+    image="/images/fire-feast-x.jpg"
+    alt="Fried rice with shrimp, egg and peppers served inside a whole pineapple"
+    eyebrow="Signature"
+    name="Fire Feast X"
+    sub="Fried rice, served in a pineapple."
+    paras={[
+      'Fried rice served inside a pineapple. Shrimp, peppers, egg, and her own hand on the seasoning.',
+      'Her signature presentation, made for events and gifting. Order ahead for the full effect.',
+    ]}
+    orderText="Fire Feast X"
+    secondImage="/images/fire-feast-x-2.jpg"
+    secondAlt="A plated serving of the Fire Feast X fried rice"
+    meta={[
+      { k: 'Type', v: 'Signature presentation' },
+      { k: 'Best for', v: 'Events & gifting' },
+      { k: 'Made', v: 'To order' },
+    ]}
+  />
+</Base>

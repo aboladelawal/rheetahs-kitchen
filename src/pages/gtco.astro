@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import EditorialRow from '../components/EditorialRow.astro';
+
+const stats = [
+  { k: 'Event', v: 'GTCO Food & Drink Festival' },
+  { k: 'Selected', v: '1 of 204 vendors' },
+  { k: 'Result', v: 'Sold out three days' },
+  { k: 'Payments', v: 'Squad by GTCO' },
+];
+const shots = [
+  { image: '/images/festival.jpg', alt: 'The Rheetah\'s Kitchen display counter at the festival' },
+  { image: '/images/team.jpg', alt: 'The Rheetah\'s Kitchen crew at the stand' },
+  { image: '/images/kitchen-pots.jpg', alt: 'Rita behind the serving pots at the stand' },
+  { image: '/images/single-serves.jpg', alt: 'Jollof cups lined up to serve' },
+];
+---
+
+<Base
+  title="GTCO Food & Drink Festival 2026 — Rheetah's Kitchen"
+  description="Rheetah's Kitchen was one of 204 vendors at the GTCO Food & Drink Festival 2026. The stand was complimentary, and Rita sold out three days running."
+  image="/images/festival.jpg"
+>
+  <PageHero
+    image="/images/festival.jpg"
+    alt="The Rheetah's Kitchen stand at the GTCO Food and Drink Festival"
+    eyebrow="Featured vendor · GTCO Food & Drink Festival · 2026"
+    title="Sold out three days running."
+    sub="One of 204 vendors at the GTCO Food & Drink Festival 2026."
+    height="tall"
+  />
+
+  <!-- STATS -->
+  <section class="gt-stats">
+    <div class="wrap gt-stats__grid">
+      {stats.map((s, i) => (
+        <div class="gt-stat" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+          <span class="gt-stat__k">{s.k}</span>
+          <span class="gt-stat__v">{s.v}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <EditorialRow
+    image="/images/team.jpg"
+    alt="The Rheetah's Kitchen crew in branded tees at the stand"
+    eyebrow="The stand"
+    title="A complimentary stand, and a sell-out."
+    body={[
+      'GTCO selected Rita as one of 204 vendors for the 9th edition of its Food & Drink Festival. The stand was complimentary, given to her by GTCO.',
+      'She sold out three days running. Payments at the stand ran on Squad by GTCO.',
+    ]}
+    side="right"
+    ground="sand"
+    eyebrowClass="eyebrow--gold"
+  />
+
+  <!-- PHOTO BAND -->
+  <section class="gt-band" aria-label="Festival photos">
+    {shots.map((s) => (
+      <div class="gt-band__cell"><img src={s.image} alt={s.alt} loading="lazy" /></div>
+    ))}
+  </section>
+
+  <!-- CTA -->
+  <section class="gt-cta">
+    <div class="wrap gt-cta__inner" data-reveal>
+      <span class="eyebrow eyebrow--gold">See more</span>
+      <h2 class="gt-cta__title">Book her for your event.</h2>
+      <div class="gt-cta__btns">
+        <a href="/contact" class="btn btn--solid">Book Chef Rheetah <span class="arw">→</span></a>
+        <a href="/gallery" class="btn btn--line">See the gallery <span class="arw">→</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .gt-stats { background: var(--cream); padding-block: clamp(40px, 6vh, 72px); }
+  .gt-stats__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+  .gt-stat { display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .gt-stat__k { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .gt-stat__v { font-family: var(--serif); font-size: var(--fs-h3); color: var(--brown); line-height: 1.1; }
+  @media (min-width: 760px) { .gt-stats__grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .gt-band { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .gt-band__cell { aspect-ratio: 1 / 1; overflow: hidden; }
+  .gt-band__cell img { width: 100%; height: 100%; object-fit: cover; }
+  @media (min-width: 760px) { .gt-band { grid-template-columns: repeat(4, 1fr); } }
+
+  .gt-cta { background: var(--cream); }
+  .gt-cta__inner { text-align: center; padding-block: clamp(56px, 9vh, 100px); }
+  .gt-cta__title { font-size: var(--fs-h1); margin-top: 8px; }
+  .gt-cta__btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 26px; }
+</style>

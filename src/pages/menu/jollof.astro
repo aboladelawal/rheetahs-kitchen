@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import DishDetail from '../../components/DishDetail.astro';
+---
+
+<Base
+  title="Jollof rice — Rheetah's Kitchen"
+  description="Rheetah's Kitchen jollof rice. Rita's house signature, cooked to order in party trays or single portions."
+  image="/images/jollof.jpg"
+>
+  {/* PLACEHOLDER: dish copy to be confirmed by Rita */}
+  <DishDetail
+    image="/images/jollof.jpg"
+    alt="Overhead flatlay of jollof rice cups topped with chicken, beef and suya"
+    eyebrow="Signature"
+    name="Jollof rice"
+    sub="Her house signature."
+    paras={[
+      'Rita\'s house jollof. Smoky, deep, and the reason people keep her number.',
+      'Cooked to order, in party trays or single portions. Add chicken, beef or suya, or run it as a full spread.',
+    ]}
+    orderText="jollof rice"
+    secondImage="/images/jollof-cups.jpg"
+    secondAlt="Rows of jollof rice cups garnished and ready to serve"
+    meta={[
+      { k: 'Type', v: 'House signature' },
+      { k: 'Serves', v: 'Single to party trays' },
+      { k: 'Made', v: 'To order' },
+    ]}
+  />
+</Base>

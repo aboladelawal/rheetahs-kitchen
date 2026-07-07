@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import EditorialRow from '../components/EditorialRow.astro';
+
+const timeline = [
+  { year: '2019', label: 'Started cooking at university' },
+  { year: '2021', label: "Rheetah's Kitchen launched" },
+  { year: '2026', label: 'Sold out at GTCO 2026' },
+  { year: 'Next', label: 'A GWR cook-a-thon attempt' },
+];
+---
+
+<Base
+  title="Story — Rheetah's Kitchen"
+  description="How Rita Mensah went from cooking for friends at university in 2019 to running Rheetah's Kitchen, a Lagos food brand built in honour of her mother."
+  image="/images/portrait.jpg"
+>
+  <PageHero
+    image="/images/portrait.jpg"
+    alt="Chef Rita Mensah in her chef whites"
+    eyebrow="Founder, Rheetah's Kitchen"
+    title="Rita Mensah."
+    sub="A Lagos food vendor and founder. Self-taught. Cooking since 2019."
+    height="tall"
+    position="center 25%"
+  />
+
+  <!-- LEAD -->
+  <section class="section story-lead">
+    <div class="wrap story-lead__inner" data-reveal>
+      <p class="story-lead__p">
+        Rita Mensah runs Rheetah's Kitchen out of Lagos. She cooks jollof. She caters events. She
+        started in 2019 and built a brand by 2021. She is self-taught.
+      </p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="story-time">
+    <div class="wrap story-time__grid">
+      {timeline.map((t, i) => (
+        <div class="story-time__item" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+          <span class="story-time__year">{t.year}</span>
+          <span class="story-time__label">{t.label}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 2019 -->
+  <EditorialRow
+    image="/images/jollof-cups.jpg"
+    alt="Cups of jollof rice topped with proteins"
+    eyebrow="2019 · The beginning"
+    title="It started at university."
+    body={[
+      'Rita started cooking in 2019, while studying for a Finance degree at Ekiti State University. She cooked for friends.',
+      'The requests kept coming. What she made for people she cared about turned into orders.',
+    ]}
+    side="right"
+    ground="sand"
+  />
+
+  <!-- 2021 · in honour -->
+  <EditorialRow
+    image="/images/kitchen-pots.jpg"
+    alt="Rita smiling behind the big serving pots"
+    eyebrow="2021 · In honour"
+    title="A brand, in her mother's honour."
+    body={[
+      'Rita launched Rheetah\'s Kitchen in 2021. Her late mother was a caterer and food vendor, and the way she fed people stayed with Rita.',
+      'She built the kitchen in her honour, and in her own love for food. For Rita, cooking is love, creativity, purpose, and legacy, on one plate.',
+    ]}
+    side="left"
+    ground="cream"
+    blob={true}
+  />
+
+  <!-- 2026 · GTCO -->
+  <EditorialRow
+    image="/images/festival.jpg"
+    alt="The Rheetah's Kitchen stand at GTCO 2026"
+    eyebrow="2026 · The festival"
+    title="Sold out three days at GTCO."
+    body={['Selected as one of 204 vendors at the GTCO Food & Drink Festival 2026. The stand was complimentary. She sold out three days running.']}
+    href="/gtco"
+    cta="The festival story"
+    side="right"
+    ground="bone"
+    eyebrowClass="eyebrow--gold"
+  />
+
+  <!-- What's next · GWR -->
+  <EditorialRow
+    image="/images/big-pot.jpg"
+    alt="Rita cooking at the big pots"
+    eyebrow="What's next"
+    title="A Guinness World Records cook-a-thon attempt."
+    body={['Self-directed and community-powered. Food cooked on the day is shared with everyone there and donated to charity partners across Lagos, in honour of her mother.']}
+    href="/gwr"
+    cta="Read more"
+    side="left"
+    ground="brown"
+    blob={true}
+  />
+
+  <!-- PULL QUOTE -->
+  <section class="pquote">
+    <div class="wrap pquote__inner" data-reveal>
+      <p class="pquote__q">"The kitchen is my safe space."</p>
+      <p class="pquote__by">— Rita Mensah</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .story-lead { background: var(--cream); padding-bottom: 0; }
+  .story-lead__inner { max-width: 720px; margin-inline: auto; text-align: center; }
+  .story-lead__p { font-family: var(--serif); font-size: clamp(22px, 3vw, 30px); line-height: 1.4; color: var(--brown); }
+
+  .story-time { background: var(--cream); padding-block: clamp(40px, 6vh, 72px); }
+  .story-time__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .story-time__item { display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .story-time__year { font-family: var(--serif); font-size: var(--fs-h2); color: var(--orange-deep); line-height: 1; }
+  .story-time__label { font-size: var(--fs-small); color: var(--muted); }
+  @media (min-width: 760px) { .story-time__grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .pquote { background: var(--sand); }
+  .pquote__inner { max-width: 820px; margin-inline: auto; text-align: center; padding-block: clamp(64px, 10vh, 120px); }
+  .pquote__q { font-family: var(--serif); font-style: italic; font-size: clamp(28px, 5vw, 52px); line-height: 1.15; color: var(--brown); }
+  .pquote__by { margin-top: 20px; font-size: var(--fs-small); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+</style>

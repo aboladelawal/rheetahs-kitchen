@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+const groups = [
+  {
+    label: 'Signatures & dishes',
+    images: [
+      { image: '/images/jollof.jpg', alt: 'Jollof rice cups' },
+      { image: '/images/fire-feast-x.jpg', alt: 'Fire Feast X in a pineapple' },
+      { image: '/images/fruity-zobo.jpg', alt: 'Fruity Zobo bottles' },
+      { image: '/images/jollof-cups.jpg', alt: 'Jollof cups lined up' },
+      { image: '/images/fire-feast-x-2.jpg', alt: 'Plated Fire Feast X fried rice' },
+      { image: '/images/single-serves.jpg', alt: 'Single serves of jollof' },
+      { image: '/images/small-chops.jpg', alt: 'A tray of small chops' },
+      { image: '/images/catering.jpg', alt: 'A buffet spread in trays' },
+    ],
+  },
+  {
+    label: 'Events & the stand',
+    images: [
+      { image: '/images/festival.jpg', alt: 'The Rheetah\'s Kitchen display counter' },
+      { image: '/images/team.jpg', alt: 'The crew at the GTCO stand' },
+      { image: '/images/kitchen-pots.jpg', alt: 'Rita behind the serving pots' },
+      { image: '/images/big-pot.jpg', alt: 'Cooking at the big pots' },
+    ],
+  },
+  {
+    label: 'Boxes & packing',
+    images: [
+      { image: '/images/box-bamboo.jpg', alt: 'A bamboo tray box' },
+      { image: '/images/box-gift.jpg', alt: 'A loaded gift box' },
+      { image: '/images/box-delivery.jpg', alt: 'Sealed delivery lunch packs' },
+      { image: '/images/box-wrapped.jpg', alt: 'Gift-wrapped boxes' },
+      { image: '/images/box-gift-2.jpg', alt: 'A curated box on a rooftop' },
+      { image: '/images/kitchen-packing.jpg', alt: 'Packing a box by hand' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Gallery — Rheetah's Kitchen"
+  description="A gallery of Rheetah's Kitchen: signature dishes, events, the GTCO stand, curated boxes, and the kitchen at work."
+  image="/images/team.jpg"
+>
+  <PageHero
+    image="/images/team.jpg"
+    alt="The Rheetah's Kitchen crew at the GTCO Food and Drink Festival"
+    eyebrow="Rheetah's Kitchen"
+    title="Gallery."
+    sub="Dishes, events, boxes, and the kitchen at work."
+    position="center 40%"
+  />
+
+  {groups.map((g) => (
+    <section class="ggroup">
+      <div class="wrap ggroup__head" data-reveal>
+        <span class="eyebrow eyebrow--gold">{g.label}</span>
+      </div>
+      <div class="ggrid">
+        {g.images.map((im, i) => (
+          <figure class="gcell" data-reveal style={`--reveal-delay:${(i % 4) * 60}ms`}>
+            <img src={im.image} alt={im.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section class="gend">
+    <div class="wrap gend__inner" data-reveal>
+      <h2 class="gend__title">Want this at your event?</h2>
+      <a href="/contact" class="btn btn--solid">Book Chef Rheetah <span class="arw">→</span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ggroup { background: var(--cream); padding-top: clamp(40px, 6vh, 72px); }
+  .ggroup:nth-child(odd) { background: var(--bone); }
+  .ggroup__head { margin-bottom: 20px; }
+  .ggrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .gcell { aspect-ratio: 1 / 1; overflow: hidden; background: var(--sand); }
+  .gcell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+  .gcell:hover img { transform: scale(1.05); }
+  @media (min-width: 680px) { .ggrid { grid-template-columns: repeat(4, 1fr); } }
+
+  .gend { background: var(--brown-deep); color: var(--cream); }
+  .gend__inner { text-align: center; padding-block: clamp(56px, 9vh, 100px); }
+  .gend__title { color: var(--cream); font-size: var(--fs-h1); margin-bottom: 24px; }
+</style>

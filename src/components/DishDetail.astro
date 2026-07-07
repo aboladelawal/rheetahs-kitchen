@@ -1,0 +1,68 @@
+---
+import PageHero from './PageHero.astro';
+
+interface Props {
+  image: string;
+  alt: string;
+  name: string;
+  eyebrow: string;
+  sub?: string;
+  paras: string[];
+  orderText: string; // plain text for the WhatsApp prefill
+  secondImage?: string;
+  secondAlt?: string;
+  meta?: { k: string; v: string }[];
+}
+const { image, alt, name, eyebrow, sub, paras, orderText, secondImage, secondAlt, meta = [] } = Astro.props;
+const wa = `https://wa.me/2349129508724?text=${encodeURIComponent("Hi Chef Rheetah, I'd like to order " + orderText)}`;
+---
+
+<PageHero image={image} alt={alt} eyebrow={eyebrow} title={name} sub={sub} height="tall" />
+
+<section class="dish">
+  <div class="wrap dish__grid">
+    <div class="dish__body" data-reveal>
+      {paras.map((p) => <p class="dish__p">{p}</p>)}
+      <a href={wa} target="_blank" rel="noopener" class="btn btn--solid dish__order">Order via WhatsApp <span class="arw">→</span></a>
+    </div>
+    <aside class="dish__side" data-reveal>
+      {meta.length > 0 && (
+        <ul role="list" class="dish__meta">
+          {meta.map((m) => (
+            <li><span class="dish__k">{m.k}</span><span class="dish__v">{m.v}</span></li>
+          ))}
+        </ul>
+      )}
+      <div class="dish__links">
+        <a href="/menu" class="arrow-link arrow-link--muted">Back to the menu <span class="arw">→</span></a>
+        <a href="/catering" class="arrow-link arrow-link--muted">Catering & events <span class="arw">→</span></a>
+      </div>
+    </aside>
+  </div>
+
+  {secondImage && (
+    <div class="dish__wide" data-reveal>
+      <img src={secondImage} alt={secondAlt ?? alt} loading="lazy" />
+    </div>
+  )}
+</section>
+
+<style>
+  .dish { background: var(--cream); padding-top: var(--section-py); }
+  .dish__grid { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 5vw, 64px); }
+  .dish__p { font-family: var(--serif); font-size: clamp(19px, 2.4vw, 24px); line-height: 1.5; color: var(--brown); }
+  .dish__p + .dish__p { margin-top: 18px; }
+  .dish__order { margin-top: 32px; }
+  .dish__meta { display: grid; gap: 0; margin-bottom: 28px; }
+  .dish__meta li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .dish__k { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .dish__v { font-family: var(--serif); font-size: var(--fs-body); color: var(--brown); text-align: right; }
+  .dish__links { display: flex; flex-direction: column; gap: 12px; }
+
+  .dish__wide { margin-top: var(--section-py); aspect-ratio: 16 / 9; overflow: hidden; }
+  .dish__wide img { width: 100%; height: 100%; object-fit: cover; }
+
+  @media (min-width: 860px) {
+    .dish__grid { grid-template-columns: 1.5fr 1fr; align-items: start; }
+  }
+</style>

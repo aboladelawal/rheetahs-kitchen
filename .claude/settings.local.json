@@ -11,7 +11,13 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-prefers-reduced-motion --force-device-scale-factor=2 --virtual-time-budget=9000 --window-size=390,3200 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/kw-mobile.png http://localhost:4321/)",
       "Bash(python3 -)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --virtual-time-budget=8000 --window-size=390,850 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/hero-m.png http://localhost:4321/)",
-      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --virtual-time-budget=8000 --window-size=390,850 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/hero-m2.png http://localhost:4321/)"
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --virtual-time-budget=8000 --window-size=390,850 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/hero-m2.png http://localhost:4321/)",
+      "WebFetch(domain:www.kwameonwuachi.com)",
+      "Bash(cp __TRACKED_VAR__/jollof-flatlay.jpg public/images/jollof.jpg)",
+      "Bash(cp __TRACKED_VAR__/signature-fire-feast-x.jpg public/images/fire-feast-x.jpg)",
+      "Bash(cp __TRACKED_VAR__/drinks-fruity-zobo.jpg public/images/fruity-zobo.jpg)",
+      "Bash(cp __TRACKED_VAR__/catering-buffet.jpg public/images/catering.jpg)",
+      "Bash(cp __TRACKED_VAR__/catering-single-serves.jpg public/images/single-serves.jpg)"
     ]
   }
 }

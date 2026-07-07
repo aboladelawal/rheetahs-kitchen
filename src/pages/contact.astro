@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+
+const rows = [
+  { k: 'WhatsApp', v: '+234 912 950 8724', href: 'https://wa.me/2349129508724', ext: true },
+  { k: 'Call', v: '+234 912 950 8724', href: 'tel:+2349129508724', ext: false },
+  { k: 'Instagram', v: '@rheetahs_kitchen', href: 'https://www.instagram.com/rheetahs_kitchen/', ext: true },
+  { k: 'Email', v: 'rheetahskitchen@gmail.com', href: 'mailto:rheetahskitchen@gmail.com', ext: false },
+];
+---
+
+<Base
+  title="Contact — Rheetah's Kitchen"
+  description="Book Rheetah's Kitchen. WhatsApp, call, Instagram or email Rita Mensah in Lagos."
+>
+  <section class="contact">
+    <div class="wrap">
+      <div class="contact__head" data-reveal>
+        <span class="eyebrow eyebrow--gold">Contact</span>
+        <h1 class="contact__title">Book the kitchen.</h1>
+        <p class="contact__sub">Message for trays, boxes, catering, or the GWR attempt. We reply fast.</p>
+      </div>
+
+      <ul role="list" class="contact__list">
+        {rows.map((r, i) => (
+          <li data-reveal style={`--reveal-delay:${i * 60}ms`}>
+            <a
+              href={r.href}
+              class="crow"
+              {...(r.ext ? { target: '_blank', rel: 'noopener' } : {})}
+            >
+              <span class="crow__k">{r.k}</span>
+              <span class="crow__v">{r.v}</span>
+              <span class="crow__arw" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="contact__place" data-reveal>Lagos, Nigeria</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact { background: var(--cream); padding-block: clamp(56px, 10vh, 130px); }
+  .contact__head { max-width: 640px; margin-bottom: clamp(36px, 6vh, 64px); }
+  .contact__title { font-size: var(--fs-hero); line-height: 0.98; letter-spacing: -0.02em; margin-top: 14px; }
+  .contact__sub { color: var(--muted); font-size: var(--fs-body); margin-top: 18px; max-width: 44ch; }
+
+  .contact__list { border-top: 1px solid var(--line); }
+  .crow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'k arw' 'v arw';
+    align-items: center;
+    gap: 2px 16px;
+    padding: clamp(22px, 3.5vw, 34px) 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.35s var(--ease);
+  }
+  .crow:hover { padding-left: 12px; }
+  .crow__k { grid-area: k; font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .crow__v { grid-area: v; font-family: var(--serif); font-size: clamp(24px, 4.5vw, 40px); color: var(--brown); line-height: 1.1; }
+  .crow:hover .crow__v { color: var(--orange-deep); }
+  .crow__arw { grid-area: arw; font-size: clamp(22px, 3vw, 30px); color: var(--muted); transition: transform 0.35s var(--ease), color 0.35s var(--ease); }
+  .crow:hover .crow__arw { transform: translateX(6px); color: var(--orange-deep); }
+
+  .contact__place { margin-top: 28px; font-size: var(--fs-small); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+</style>

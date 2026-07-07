@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import DishDetail from '../../components/DishDetail.astro';
+---
+
+<Base
+  title="Fruity Zobo — Rheetah's Kitchen"
+  description="Fruity Zobo by Rheetah's Kitchen. Rita's signature drink, a modern take on the classic Nigerian hibiscus drink with fruit infusions."
+  image="/images/fruity-zobo.jpg"
+>
+  {/* PLACEHOLDER: dish copy to be confirmed by Rita */}
+  <DishDetail
+    image="/images/fruity-zobo.jpg"
+    alt="Two bottles of Rheetah's Fruity Zobo held up on a Lagos rooftop"
+    eyebrow="Signature drink"
+    name="Fruity Zobo"
+    sub="A modern take on zobo."
+    paras={[
+      'Her signature drink. A modern take on the classic Nigerian hibiscus drink, infused with fruit.',
+      'Recently launched. Bottled and best served chilled. Order for events, gifting, or by the case.',
+    ]}
+    orderText="Fruity Zobo"
+    meta={[
+      { k: 'Type', v: 'Signature drink' },
+      { k: 'Serve', v: 'Chilled' },
+      { k: 'Status', v: 'Recently launched' },
+    ]}
+  />
+</Base>

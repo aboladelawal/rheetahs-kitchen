@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import EditorialRow from '../components/EditorialRow.astro';
+
+const services = [
+  { image: '/images/single-serves.jpg', name: 'Single serves', note: 'For 80 and up. Jollof, chicken, suya.' },
+  { image: '/images/catering.jpg', name: 'Buffet spreads', note: 'A full spread, set up and run.' },
+  { image: '/images/small-chops.jpg', name: 'Cocktail tables', note: 'Small chops, done right.' },
+  { image: '/images/box-delivery.jpg', name: 'Lunch packs', note: 'Sealed, branded, delivered.' },
+];
+
+const boxes = [
+  { image: '/images/box-bamboo.jpg', alt: 'A bamboo tray of jollof cups, small chops, fruit and drinks' },
+  { image: '/images/box-gift.jpg', alt: 'A loaded gift box with malta, jollof, sides and plantain' },
+  { image: '/images/box-wrapped.jpg', alt: 'Red gift-wrapped boxes ready to send' },
+  { image: '/images/box-gift-2.jpg', alt: 'A curated box on a Lagos rooftop' },
+];
+---
+
+<Base
+  title="Catering & events — Rheetah's Kitchen"
+  description="Rheetah's Kitchen caters events across Lagos. Single serves, buffet spreads, cocktail tables, lunch packs and curated gift boxes. Every order packed by hand."
+  image="/images/catering.jpg"
+>
+  <PageHero
+    image="/images/catering.jpg"
+    alt="A catered spread of jollof, fried rice, spaghetti and proteins in trays"
+    eyebrow="Catering & events"
+    title="Catering & events."
+    sub="From single-serves for 80 to full spreads. Cooked to order, packed by hand."
+  />
+
+  <!-- SERVICES -->
+  <section class="cat-serv">
+    <div class="wrap cat-serv__head" data-reveal>
+      <span class="eyebrow eyebrow--gold">What she runs</span>
+      <h2 class="cat-serv__title">Built for the room she walks into.</h2>
+    </div>
+    <div class="cat-serv__grid">
+      {services.map((s, i) => (
+        <figure class="serv" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+          <div class="serv__media"><img src={s.image} alt={s.name} loading="lazy" /></div>
+          <figcaption class="serv__cap">
+            <span class="serv__name">{s.name}</span>
+            <span class="serv__note">{s.note}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <!-- BOXES editorial -->
+  <EditorialRow
+    image="/images/box-bamboo.jpg"
+    alt="A bamboo tray of jollof cups, small chops, fruit and drinks"
+    eyebrow="Curated boxes"
+    title="For gifting, office runs, and celebrations."
+    body={['Curated boxes for gifting, office runs, and celebrations. Every order packed by hand.']}
+    side="right"
+    ground="sand"
+    blob={true}
+  />
+
+  <!-- BOX GALLERY band -->
+  <section class="cat-band" aria-label="Box gallery">
+    {boxes.map((b) => (
+      <div class="cat-band__cell"><img src={b.image} alt={b.alt} loading="lazy" /></div>
+    ))}
+  </section>
+
+  <!-- CTA -->
+  <section class="cat-cta">
+    <div class="wrap cat-cta__inner" data-reveal>
+      <h2 class="cat-cta__title">Plan your event.</h2>
+      <p class="cat-cta__p">Tell us the date, the headcount, and what you're celebrating.</p>
+      <a href="/contact" class="btn btn--cream">Start on WhatsApp <span class="arw">→</span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cat-serv { background: var(--cream); padding-top: var(--section-py); padding-bottom: var(--section-py); }
+  .cat-serv__head { margin-bottom: clamp(24px, 4vh, 40px); }
+  .cat-serv__title { font-size: var(--fs-h2); margin-top: 8px; max-width: 20ch; }
+  .cat-serv__grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .serv__media { aspect-ratio: 4 / 3; overflow: hidden; }
+  .serv__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+  .serv:hover .serv__media img { transform: scale(1.04); }
+  .serv__cap { display: flex; flex-direction: column; gap: 4px; padding: 16px clamp(20px, 5vw, 56px) 28px; }
+  .serv__name { font-family: var(--serif); font-size: var(--fs-h3); color: var(--brown); }
+  .serv__note { font-size: var(--fs-small); color: var(--muted); }
+
+  .cat-band { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .cat-band__cell { aspect-ratio: 1 / 1; overflow: hidden; }
+  .cat-band__cell img { width: 100%; height: 100%; object-fit: cover; }
+
+  .cat-cta { background: var(--brown-deep); color: var(--cream); }
+  .cat-cta__inner { text-align: center; padding-block: clamp(56px, 9vh, 100px); max-width: 620px; margin-inline: auto; }
+  .cat-cta__title { color: var(--cream); font-size: var(--fs-h1); }
+  .cat-cta__p { color: rgba(247,241,232,0.8); margin-block: 16px 28px; }
+
+  @media (min-width: 760px) {
+    .cat-serv__grid { grid-template-columns: repeat(4, 1fr); }
+    .serv__cap { padding: 16px 20px 8px; }
+    .cat-band { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>

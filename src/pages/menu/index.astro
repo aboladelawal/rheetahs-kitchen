@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import EditorialRow from '../../components/EditorialRow.astro';
+
+const others = [
+  { image: '/images/small-chops.jpg', name: 'Small chops', note: 'Samosa, spring rolls, puff puff, peppered meat.' },
+  { image: '/images/catering.jpg', name: 'Buffet spread', note: 'Jollof, fried rice, spaghetti and proteins.' },
+  { image: '/images/box-delivery.jpg', name: 'Lunch packs', note: 'Sealed, branded, delivered.' },
+  { image: '/images/box-gift.jpg', name: 'Gift boxes', note: 'Loaded boxes for gifting and celebrations.' },
+];
+---
+
+<Base
+  title="Menu — Rheetah's Kitchen"
+  description="The Rheetah's Kitchen menu. Jollof rice, the Fire Feast X pineapple, and Fruity Zobo, plus small chops, buffets, lunch packs and gift boxes."
+  image="/images/jollof.jpg"
+>
+  <PageHero
+    image="/images/jollof.jpg"
+    alt="Cups of jollof rice topped with chicken and suya"
+    eyebrow="Rheetah's Kitchen"
+    title="The menu."
+    sub="Three signatures, and everything else she cooks to order."
+  />
+
+  <EditorialRow
+    image="/images/jollof.jpg"
+    alt="Overhead flatlay of jollof rice cups"
+    eyebrow="Signature"
+    title="Jollof rice."
+    body={['Her house signature. Cooked to order, in party trays or single portions.']}
+    href="/menu/jollof"
+    cta="See the dish"
+    side="right"
+    ground="cream"
+  />
+
+  <EditorialRow
+    image="/images/fire-feast-x.jpg"
+    alt="Fried rice with shrimp served inside a pineapple"
+    eyebrow="Signature"
+    title="Fire Feast X."
+    body={['Fried rice served inside a pineapple. Her signature presentation, made for events and gifting.']}
+    href="/menu/fire-feast-x"
+    cta="See the dish"
+    side="left"
+    ground="sand"
+  />
+
+  <EditorialRow
+    image="/images/fruity-zobo.jpg"
+    alt="Two bottles of Rheetah's Fruity Zobo"
+    eyebrow="Signature drink"
+    title="Fruity Zobo."
+    body={['Her take on the classic Nigerian hibiscus drink, infused with fruit. Recently launched.']}
+    href="/menu/fruity-zobo"
+    cta="See the drink"
+    side="right"
+    ground="cream"
+  />
+
+  <!-- OTHER ITEMS -->
+  <section class="more">
+    <div class="wrap more__head" data-reveal>
+      <span class="eyebrow eyebrow--gold">More from the kitchen</span>
+      <h2 class="more__title">Also on the menu.</h2>
+    </div>
+    <div class="more__grid">
+      {others.map((o, i) => (
+        <figure class="mitem" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+          <div class="mitem__media"><img src={o.image} alt={o.name} loading="lazy" /></div>
+          <figcaption class="mitem__cap">
+            <span class="mitem__name">{o.name}</span>
+            <span class="mitem__note">{o.note}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <div class="wrap more__cta" data-reveal>
+      <a href="/contact" class="btn btn--solid">Order via WhatsApp <span class="arw">→</span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .more { background: var(--bone); padding-top: var(--section-py); padding-bottom: var(--section-py); }
+  .more__head { margin-bottom: clamp(24px, 4vh, 40px); }
+  .more__title { font-size: var(--fs-h2); margin-top: 8px; }
+  .more__grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+  .mitem { background: var(--bone); }
+  .mitem__media { aspect-ratio: 4 / 3; overflow: hidden; }
+  .mitem__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+  .mitem:hover .mitem__media img { transform: scale(1.04); }
+  .mitem__cap { display: flex; flex-direction: column; gap: 4px; padding: 18px clamp(20px, 5vw, 56px) 28px; }
+  .mitem__name { font-family: var(--serif); font-size: var(--fs-h3); color: var(--brown); }
+  .mitem__note { font-size: var(--fs-small); color: var(--muted); }
+  .more__cta { margin-top: clamp(28px, 4vh, 44px); }
+  @media (min-width: 760px) {
+    .more__grid { grid-template-columns: repeat(4, 1fr); }
+    .mitem__cap { padding: 18px 20px 8px; }
+  }
+</style>

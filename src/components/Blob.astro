@@ -1,0 +1,42 @@
+---
+// Organic SVG accent, à la Kwame's site. Positioned absolutely inside a
+// position:relative parent. Purely decorative.
+interface Props {
+  color?: string;
+  opacity?: number;
+  size?: string;   // e.g. "460px" or "60vw"
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+  rotate?: string; // e.g. "20deg"
+}
+const {
+  color = 'var(--gold)',
+  opacity = 0.14,
+  size = 'min(60vw, 480px)',
+  top, left, right, bottom,
+  rotate = '0deg',
+} = Astro.props;
+const style = [
+  `width:${size}`,
+  `opacity:${opacity}`,
+  top != null ? `top:${top}` : null,
+  left != null ? `left:${left}` : null,
+  right != null ? `right:${right}` : null,
+  bottom != null ? `bottom:${bottom}` : null,
+  `transform:rotate(${rotate})`,
+].filter(Boolean).join(';');
+---
+
+<svg class="blob" viewBox="0 0 200 200" aria-hidden="true" style={style}>
+  <path
+    fill={color}
+    d="M42.7,-62.9C55.9,-54.8,67.4,-43.3,72.9,-29.3C78.4,-15.3,77.9,1.2,72.4,15.6C66.9,30,56.4,42.3,43.8,52.9C31.2,63.5,15.6,72.4,-0.7,73.4C-17,74.4,-34,67.5,-47.6,56.7C-61.2,45.9,-71.4,31.2,-75.3,14.8C-79.2,-1.6,-76.8,-19.7,-68.2,-34.1C-59.6,-48.5,-44.8,-59.2,-29.8,-66.9C-14.8,-74.6,0.4,-79.3,15.9,-77.1C31.4,-74.9,47.2,-65.8,42.7,-62.9Z"
+    transform="translate(100 100)"
+  />
+</svg>
+
+<style>
+  .blob { position: absolute; z-index: 0; height: auto; pointer-events: none; }
+</style>
