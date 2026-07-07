@@ -2,17 +2,18 @@
 interface Props {
   items: string[];
   speed?: number; // seconds per loop
+  tone?: 'orange' | 'brown';
 }
-const { items, speed = 32 } = Astro.props;
-const doubled = [...items, ...items];
+const { items, speed = 30, tone = 'orange' } = Astro.props;
+const doubled = [...items, ...items, ...items, ...items];
 ---
 
-<div class="marquee" aria-hidden="true">
+<div class:list={['marquee', `marquee--${tone}`]} aria-hidden="true">
   <div class="marquee__track" style={`--speed:${speed}s`}>
     {doubled.map((item) => (
       <span class="marquee__item">
         {item}
-        <span class="marquee__dot">✳</span>
+        <span class="marquee__dot">✦</span>
       </span>
     ))}
   </div>
@@ -22,10 +23,10 @@ const doubled = [...items, ...items];
   .marquee {
     overflow: hidden;
     white-space: nowrap;
-    border-block: 1px solid var(--line);
-    background: var(--paper-warm);
-    padding-block: var(--space-s);
+    padding-block: clamp(0.85rem, 2vw, 1.35rem);
   }
+  .marquee--orange { background: var(--orange); color: var(--brown-deep); }
+  .marquee--brown { background: var(--brown-deep); color: var(--cream); }
   .marquee__track {
     display: inline-flex;
     align-items: center;
@@ -36,18 +37,17 @@ const doubled = [...items, ...items];
     display: inline-flex;
     align-items: center;
     font-family: var(--font-display);
-    font-size: var(--step-2);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--ink);
-    padding-inline: 0.6em;
+    font-size: clamp(1.4rem, 1rem + 1.7vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    padding-inline: 0.55em;
   }
+  .marquee--orange .marquee__dot { color: var(--cream); }
+  .marquee--brown .marquee__dot { color: var(--orange); }
   .marquee__dot {
-    color: var(--terracotta);
-    font-style: normal;
-    font-size: 0.6em;
-    margin-inline-start: 1.2em;
-    transform: translateY(-0.15em);
+    font-size: 0.55em;
+    margin-inline-start: 1.1em;
+    transform: translateY(-0.1em);
   }
   @keyframes marquee {
     to { transform: translateX(-50%); }

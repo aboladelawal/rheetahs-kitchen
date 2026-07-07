@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/img/logo-rheetahs.png';
+import logo from '../assets/img/logo-cream.png';
 
 const year = new Date().getFullYear();
 const wa = 'https://wa.me/2349129508724';
@@ -21,7 +21,7 @@ const nav = [
     <div class="footer__top">
       <div class="footer__brand">
         <a href="/" class="footer__mark" aria-label="Rheetah's Kitchen — home">
-          <Image src={logo} alt="Rheetah's Kitchen" widths={[180, 260]} loading="lazy" class="footer__logo" />
+          <Image src={logo} alt="Rheetah's Kitchen" widths={[220, 320]} loading="lazy" class="footer__logo" />
         </a>
         <p class="footer__tag">Love at first bite.</p>
         <p class="footer__sub">Lagos food, cooked at volume and packed by hand. Founded 2021.</p>
@@ -44,7 +44,6 @@ const nav = [
       </div>
     </div>
 
-    <!-- Studio attribution — real client site -->
     <div class="footer__base">
       <p class="footer__built">
         Designed and built by
@@ -57,41 +56,41 @@ const nav = [
 
 <style>
   .footer {
-    background: var(--paper-deep);
-    border-top: 1px solid var(--line);
+    background: var(--brown-deep);
+    color: var(--cream);
     padding-block: var(--space-2xl) var(--space-l);
-    margin-top: var(--space-3xl);
   }
   .footer__top {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-xl) var(--space-l);
     padding-bottom: var(--space-xl);
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid rgba(248,241,228,0.14);
   }
-  .footer__logo { height: 2.6rem; width: auto; }
+  .footer__logo { height: 3rem; width: auto; }
   .footer__tag {
     margin-top: var(--space-m);
     font-family: var(--font-display);
+    font-weight: 600;
     font-style: italic;
     font-size: var(--step-2);
-    color: var(--brown);
+    color: var(--orange-bright);
     line-height: 1.1;
   }
-  .footer__sub { margin-top: var(--space-2xs); max-width: 32ch; color: var(--ink-soft); font-size: var(--step--1); }
+  .footer__sub { margin-top: var(--space-2xs); max-width: 34ch; color: rgba(248,241,228,0.66); font-size: var(--step--1); }
 
   .footer__h {
     font-family: var(--font-body);
     font-size: var(--step--1);
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--ink-faint);
+    color: rgba(248,241,228,0.5);
     margin-bottom: var(--space-s);
   }
   .footer__nav ul { display: flex; flex-direction: column; gap: 0.7em; }
-  .footer__nav a { color: var(--ink-soft); transition: color 0.3s var(--ease); }
-  .footer__nav a:hover { color: var(--ink); }
+  .footer__nav a { color: rgba(248,241,228,0.82); transition: color 0.3s var(--ease); }
+  .footer__nav a:hover { color: var(--orange-bright); }
 
   .footer__base {
     display: flex;
@@ -101,15 +100,15 @@ const nav = [
     gap: var(--space-2xs) var(--space-l);
     padding-top: var(--space-l);
   }
-  .footer__built { font-size: var(--step--1); color: var(--ink-soft); line-height: 1.7; }
+  .footer__built { font-size: var(--step--1); color: rgba(248,241,228,0.66); line-height: 1.7; }
   .footer__studio {
-    color: var(--ink);
-    font-weight: 600;
-    border-bottom: 1px solid var(--orange);
+    color: var(--cream);
+    font-weight: 700;
+    border-bottom: 2px solid var(--orange);
     transition: color 0.3s var(--ease);
   }
-  .footer__studio:hover { color: var(--orange); }
-  .footer__legal { font-size: var(--step--1); color: var(--ink-faint); }
+  .footer__studio:hover { color: var(--orange-bright); }
+  .footer__legal { font-size: var(--step--1); color: rgba(248,241,228,0.5); }
 
   @media (min-width: 640px) {
     .footer__top { grid-template-columns: 2fr 1fr 1.2fr; }
