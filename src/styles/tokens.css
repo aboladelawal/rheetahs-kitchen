@@ -1,0 +1,43 @@
+/* ============================================================
+   Rheetah's Kitchen — Design tokens
+   Palette drawn from the logo (espresso brown + warm orange),
+   warmed toward the Kwame Onwuachi × Midunu quiet aesthetic.
+   ============================================================ */
+
+:root {
+  /* ---- Palette (from the logo) ---- */
+  --brown: #41210A;        /* primary ink, display type, wordmark */
+  --brown-deep: #2A1607;   /* dark bands (ticker, GWR), near-black warm */
+  --orange: #F27326;       /* accent — used sparingly, not shouting */
+  --orange-deep: #D85F14;  /* hovers */
+  --gold: #C8923C;         /* secondary accent, eyebrows on dark */
+  --gold-soft: #D9AC5C;
+  --cream: #F7F1E8;        /* primary ground */
+  --bone: #FAF6EE;         /* raised / alternating ground */
+  --sand: #EFE6D6;         /* soft warm band */
+  --muted: #6B5D54;        /* secondary text */
+  --line: rgba(42, 22, 7, 0.12);
+  --line-strong: rgba(42, 22, 7, 0.2);
+
+  /* ---- Type — Cormorant Garamond display, Inter body ---- */
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Type scale — RESTRAINED. Only the hero goes big. */
+  --fs-hero: clamp(56px, 8vw, 110px);
+  --fs-h1: clamp(32px, 4vw, 44px);
+  --fs-h2: clamp(24px, 2.8vw, 32px);
+  --fs-h3: clamp(18px, 2vw, 22px);
+  --fs-body: clamp(15px, 1.1vw, 16px);
+  --fs-small: 13px;
+  --fs-eyebrow: 11px;
+
+  /* ---- Layout ---- */
+  --max: 1240px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --section-py: clamp(60px, 9vh, 110px);
+  --radius: 4px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(.2, .6, .2, 1);
+}

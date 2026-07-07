@@ -7,8 +7,14 @@ interface Props {
   title: string;
   description: string;
   ogType?: string;
+  image?: string;
 }
-const { title, description, ogType = 'website' } = Astro.props;
+const {
+  title,
+  description,
+  ogType = 'website',
+  image = '/images/og-image.jpg',
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -17,17 +23,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/images/logo.png" type="image/png" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#F8F1E4" />
+    <meta name="theme-color" content="#F7F1E8" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Rheetah's Kitchen" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -43,7 +57,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <Footer />
 
     <script>
-      // Scroll reveal — respects reduced motion, unobserves after reveal
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const els = document.querySelectorAll('[data-reveal]');
       if (prefersReduced || !('IntersectionObserver' in window)) {
@@ -58,7 +71,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
               }
             });
           },
-          { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.1 }
         );
         els.forEach((el) => io.observe(el));
       }

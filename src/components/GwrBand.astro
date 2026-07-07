@@ -1,0 +1,56 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  href?: string;
+  cta?: string;
+}
+const {
+  eyebrow = "What's next",
+  title = 'A Guinness World Records cook-a-thon attempt. In honour.',
+  href = '/gwr',
+  cta = 'Read more',
+} = Astro.props;
+---
+
+<section class="gwr-band">
+  <div class="wrap gwr-band__inner" data-reveal>
+    <span class="eyebrow gwr-band__eyebrow">{eyebrow}</span>
+    <h2 class="gwr-band__title">{title}</h2>
+    <a href={href} class="gwr-band__cta">{cta} <span class="arw">→</span></a>
+  </div>
+</section>
+
+<style>
+  .gwr-band {
+    background:
+      radial-gradient(60% 120% at 78% 20%, rgba(200, 146, 60, 0.22) 0%, transparent 60%),
+      var(--brown-deep);
+    color: var(--cream);
+  }
+  .gwr-band__inner {
+    padding-block: clamp(56px, 8vh, 96px);
+    max-width: 900px;
+  }
+  .gwr-band__eyebrow { color: var(--gold); }
+  .gwr-band__title {
+    color: var(--cream);
+    font-size: var(--fs-h1);
+    line-height: 1.1;
+    margin-top: 18px;
+    max-width: 20ch;
+  }
+  .gwr-band__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 28px;
+    font-size: var(--fs-eyebrow);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .gwr-band__cta .arw { transition: transform 0.35s var(--ease); }
+  .gwr-band__cta:hover .arw { transform: translateX(5px); }
+</style>

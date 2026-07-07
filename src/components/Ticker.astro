@@ -1,0 +1,64 @@
+---
+interface Props {
+  items?: string[];
+  speed?: number; // seconds per loop
+}
+const {
+  items = [
+    'GWR Cook-a-thon attempt',
+    'In honour',
+    'GTCO Food & Drink Festival 2026',
+    'Sold out three days',
+    'Fruity Zobo out now',
+    'Book Chef Rheetah',
+    'Love at first bite',
+  ],
+  speed = 40,
+} = Astro.props;
+// duplicate so the loop is seamless
+const row = [...items, ...items];
+---
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" style={`--speed:${speed}s`}>
+    {row.map((item) => (
+      <span class="ticker__item">
+        {item}
+        <span class="ticker__dot">·</span>
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ticker {
+    background: var(--brown-deep);
+    overflow: hidden;
+    white-space: nowrap;
+    padding-block: 14px;
+    border-block: 1px solid rgba(200, 146, 60, 0.18);
+  }
+  .ticker__track {
+    display: inline-flex;
+    align-items: center;
+    animation: ticker var(--speed) linear infinite;
+    will-change: transform;
+  }
+  .ticker:hover .ticker__track { animation-play-state: paused; }
+  .ticker__item {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .ticker__dot { margin-inline: 1.4em; color: var(--gold-soft); opacity: 0.7; }
+  @keyframes ticker { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track { animation: none; }
+    .ticker { text-align: center; }
+  }
+</style>

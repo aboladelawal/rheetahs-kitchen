@@ -1,375 +1,122 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Marquee from '../components/Marquee.astro';
+import Ticker from '../components/Ticker.astro';
+import Card from '../components/Card.astro';
+import GwrBand from '../components/GwrBand.astro';
 
-import portrait from '../assets/img/portrait-rheetah.jpg';
-import jollof from '../assets/img/jollof-flatlay.jpg';
-import cateringSingle from '../assets/img/catering-single-serves.jpg';
-import cateringBuffet from '../assets/img/catering-buffet.jpg';
-import cateringCocktail from '../assets/img/catering-cocktail.jpg';
-import fireFeast from '../assets/img/signature-fire-feast-x.jpg';
-import bigPot from '../assets/img/creative-serving-bigpot.jpg';
-import boxBamboo from '../assets/img/box-bamboo-tray.jpg';
-import boxGift from '../assets/img/box-gift-box.jpg';
-import boxDelivery from '../assets/img/box-delivery-packs.jpg';
-import boxWrapped from '../assets/img/box-gift-wrapped.jpg';
-import kitchenPots from '../assets/img/creative-pots-smiling.jpg';
-import kitchenCounter from '../assets/img/creative-counter-banner.jpg';
-import kitchenPacking from '../assets/img/creative-packing.jpg';
-import zobo from '../assets/img/drinks-fruity-zobo.jpg';
-import team from '../assets/img/team.jpg';
-
-const wa = 'https://wa.me/2349129508724';
-
-const catering = [
-  { image: cateringSingle, alt: 'Rows of jollof rice cups topped with chicken and suya, garnished with parsley', label: 'Single serves for 80', caption: 'Jollof, chicken, suya.' },
-  { image: cateringBuffet, alt: 'A catered spread of jollof, fried rice, spaghetti and proteins in serving trays', label: 'Buffet setup', caption: 'A spread, fully run.' },
-  { image: cateringCocktail, alt: 'A tray of small chops — samosas, spring rolls, puff puff and peppered meat', label: 'Cocktail table', caption: 'Small chops, done right.' },
-  { image: fireFeast, alt: 'Fried rice with shrimp and peppers served inside a halved pineapple', label: 'Pineapple rice', caption: 'Fire Feast X, by the tray.' },
-];
-
-const kitchen = [
-  { image: kitchenPots, alt: 'Rita smiling behind the big serving pots at her stand' },
-  { image: kitchenCounter, alt: "Rita at the Rheetah's Kitchen display counter" },
-  { image: kitchenPacking, alt: 'Hands packing a meal box by hand' },
+const doors = [
+  {
+    href: '/menu',
+    image: '/images/jollof.jpg',
+    alt: 'Cups of jollof rice topped with chicken and suya',
+    eyebrow: 'Signatures',
+    title: 'The menu',
+    desc: 'Jollof, Fire Feast X, Fruity Zobo.',
+  },
+  {
+    href: '/catering',
+    image: '/images/catering.jpg',
+    alt: 'A catered spread of rice, proteins and sides in trays',
+    eyebrow: 'Catering & events',
+    title: 'Catering',
+    desc: 'From single-serves for 80 to full spreads.',
+  },
+  {
+    href: '/gtco',
+    image: '/images/festival.jpg',
+    alt: "The Rheetah's Kitchen stand at the GTCO Food and Drink Festival",
+    eyebrow: 'The festival',
+    title: 'GTCO 2026',
+    desc: 'Sold out three days at GTCO 2026.',
+  },
+  {
+    href: '/gwr',
+    image: '/images/portrait.jpg',
+    alt: 'Chef Rita Mensah in her chef whites',
+    eyebrow: 'In honour',
+    title: "What's next",
+    desc: 'A Guinness World Records cook-a-thon attempt.',
+  },
 ];
 ---
 
 <Base
   title="Rheetah's Kitchen — Love at first bite"
-  description="Lagos food by Chef Rheetah. House jollof, the Fire Feast X pineapple rice, curated gift boxes and Fruity Zobo — cooked at volume and packed by hand. Founded 2021."
+  description="Rheetah's Kitchen is a Lagos food brand by Rita Mensah. Jollof, Fire Feast X and Fruity Zobo. Catering, events, and a Guinness World Records cook-a-thon attempt in honour of her mother."
 >
-  <!-- 1 · HERO -->
+  <!-- HERO -->
   <section class="hero" aria-label="Rheetah's Kitchen">
     <video
       class="hero__video"
       autoplay muted loop playsinline
-      poster="/media/hero-poster.jpg"
+      poster="/video/hero-poster.jpg"
       preload="metadata"
       aria-hidden="true"
     >
-      <source src="/media/hero.webm" type="video/webm" />
-      <source src="/media/hero.mp4" type="video/mp4" />
+      <source src="/video/hero.webm" type="video/webm" />
+      <source src="/video/hero.mp4" type="video/mp4" />
     </video>
     <div class="hero__scrim"></div>
     <div class="wrap hero__inner">
-      <span class="hero__badge badge">GTCO Festival 2026 · Sold out 3 days</span>
-      <h1 class="hero__title">Love at<br /><em>first bite.</em></h1>
-      <div class="hero__strip">
-        <span>Lagos</span><i></i><span>Chef</span><i></i><span>Founder</span><i></i><span>Est 2021</span>
-      </div>
+      <span class="eyebrow hero__eyebrow">Lagos · Est. 2021</span>
+      <h1 class="hero__title"><em>Love at first bite.</em></h1>
+      <p class="hero__sub">Rheetah's Kitchen · a Lagos food brand by Rita Mensah</p>
       <div class="hero__cta">
-        <a href={wa} target="_blank" rel="noopener" class="btn btn--orange">Order on WhatsApp <span class="arrow">→</span></a>
-        <a href="/#signatures" class="btn btn--cream">See the signatures</a>
+        <a href="/menu" class="btn btn--cream">See the menu <span class="arw">→</span></a>
+        <a href="/contact" class="btn btn--line hero__ghost">Book Chef Rheetah <span class="arw">→</span></a>
       </div>
     </div>
   </section>
 
-  <Marquee items={['Love at first bite', 'House jollof', 'Fire Feast X', 'Fruity Zobo', 'Packed by hand', 'Founded 2021']} />
+  <Ticker />
 
-  <!-- 2 · STORY -->
-  <section class="block--cream block" id="story">
-    <div class="wrap story">
-      <div class="story__media" data-reveal>
-        <Image
-          src={portrait}
-          alt="Chef Rita Mensah in her whites, in a warm marble kitchen"
-          widths={[520, 780, 1023]}
-          sizes="(min-width: 900px) 42vw, 92vw"
-          quality={84}
-          loading="lazy"
-          class="story__img"
-        />
-        <span class="story__frame" aria-hidden="true"></span>
-      </div>
-      <div class="story__copy" data-reveal>
-        <span class="eyebrow">In her honour</span>
-        <h2 class="story__title">Built on a mother's legacy, and her own love for food.</h2>
-        <p>
-          Rita Mensah's cooking started in 2019, at university, feeding friends. What began as meals
-          made for people she cared about turned into something people came back for, recommended,
-          and trusted with their own tables.
-        </p>
-        <p>
-          Her late mother was a caterer and food vendor, and the way she fed people stayed with Rita.
-          In her honour, and driven by her own love for food, Rita built Rheetah's Kitchen.
-        </p>
-        <p>
-          For Rita, cooking is more than a meal. It is love, creativity, purpose, and legacy, all on
-          one plate.
-        </p>
-        <ul role="list" class="timeline">
-          <li><strong>2019</strong><span>Started cooking at university</span></li>
-          <li><strong>2021</strong><span>Rheetah's Kitchen officially launched</span></li>
-          <li><strong>2026</strong><span>One of 204 vendors at the GTCO Food &amp; Drink Festival — sold out three days running</span></li>
-        </ul>
-      </div>
+  <!-- INTRO -->
+  <section class="section intro">
+    <div class="wrap intro__inner" data-reveal>
+      <span class="eyebrow intro__eyebrow">Rheetah's Kitchen</span>
+      <p class="intro__lead">
+        Rita Mensah runs Rheetah's Kitchen out of Lagos. What began at university in 2019 became a
+        brand in 2021, built in honour of her mother, a caterer before her. Jollof. Fire Feast X.
+        Fruity Zobo. Love at first bite.
+      </p>
+      <a href="/story" class="arrow-link intro__link">Read her story <span class="arw">→</span></a>
     </div>
   </section>
 
-  <!-- 3 · SIGNATURES -->
-  <section class="block--brown block" id="signatures">
+  <!-- DOORWAY CARDS -->
+  <section class="section doors">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <div>
-          <span class="eyebrow">The signatures</span>
-          <h2 class="sec-title">Two dishes people keep coming back for.</h2>
-        </div>
+      <div class="doors__head" data-reveal>
+        <span class="eyebrow eyebrow--gold">Explore</span>
+        <h2 class="doors__title">Where to start.</h2>
       </div>
-      <div class="signatures">
-        <article class="sig" data-reveal>
-          <div class="sig__media">
-            <Image
-              src={jollof}
-              alt="Overhead flatlay of jollof rice cups topped with chicken, beef and suya"
-              widths={[560, 840, 1280]}
-              sizes="(min-width: 820px) 44vw, 92vw"
-              quality={84}
-              loading="lazy"
-              class="sig__img"
+      <div class="doors__grid">
+        {doors.map((d, i) => (
+          <div data-reveal style={`--reveal-delay:${i * 80}ms`}>
+            <Card
+              href={d.href}
+              image={d.image}
+              alt={d.alt}
+              eyebrow={d.eyebrow}
+              title={d.title}
+              desc={d.desc}
             />
-            <span class="sig__tag badge">Live</span>
           </div>
-          <div class="sig__body">
-            <h3 class="sig__name">Jollof rice</h3>
-            <p class="sig__desc">
-              Her house jollof. Smoky, deep, and the reason people keep her number. Party trays,
-              single serves, or a full spread.
-            </p>
-            <a href={wa} target="_blank" rel="noopener" class="link-underline sig__link">Order a tray <span class="arrow">→</span></a>
-          </div>
-        </article>
-
-        <article class="sig" data-reveal style="--reveal-delay:100ms">
-          <div class="sig__media">
-            <Image
-              src={fireFeast}
-              alt="Rheetah's Fire Feast X — fried rice with shrimp, egg and peppers built inside a whole pineapple"
-              widths={[560, 840, 1280]}
-              sizes="(min-width: 820px) 44vw, 92vw"
-              quality={84}
-              loading="lazy"
-              class="sig__img"
-            />
-            <span class="sig__tag badge sig__tag--signature">Signature</span>
-          </div>
-          <div class="sig__body">
-            <h3 class="sig__name">Fire Feast X</h3>
-            <p class="sig__desc">
-              Fried rice built inside a whole pineapple. Shrimp, peppers, egg, and her own hand on
-              the seasoning. The second signature.
-            </p>
-            <a href={wa} target="_blank" rel="noopener" class="link-underline sig__link">Ask about Fire Feast X <span class="arrow">→</span></a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4 · SELECTED WORK / CATERING -->
-  <section class="block--cream block" id="catering">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <div>
-          <span class="eyebrow">Selected work</span>
-          <h2 class="sec-title">Catering, at volume.</h2>
-        </div>
-        <p class="lede">The room she walks into, she fills — single serves for eighty, a full buffet run, or a cocktail table of small chops.</p>
-      </div>
-
-      <div class="lead" data-reveal>
-        <Image
-          src={bigPot}
-          alt="Rita cooking at the big pots at her festival stand"
-          widths={[720, 1200, 1600, 2000]}
-          sizes="100vw"
-          quality={82}
-          loading="lazy"
-          class="lead__img"
-        />
-        <div class="lead__overlay">
-          <p class="lead__line">Cooked fresh, on site, at festival scale.</p>
-        </div>
-      </div>
-
-      <div class="grid-4 tiles">
-        {catering.map((t, i) => (
-          <figure class="tile" data-reveal style={`--reveal-delay:${i * 70}ms`}>
-            <Image
-              src={t.image}
-              alt={t.alt}
-              widths={[400, 600, 800]}
-              sizes="(min-width: 960px) 24vw, (min-width: 620px) 46vw, 92vw"
-              quality={82}
-              loading="lazy"
-              class="tile__img"
-            />
-            <figcaption class="tile__cap">
-              <span class="tile__label">{t.label}</span>
-              <span class="tile__caption">{t.caption}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <p class="note" data-reveal>More catering shots are on the way from the kitchen.</p>
-    </div>
-  </section>
-
-  <!-- 5 · CURATED BOXES -->
-  <section class="block--warm block" id="boxes">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <div>
-          <span class="eyebrow">Curated boxes</span>
-          <h2 class="sec-title">For gifting, office runs, and celebrations.</h2>
-        </div>
-        <p class="lede">Curated boxes for gifting, office runs, and celebrations. Every order packed by hand.</p>
-      </div>
-
-      <div class="boxes" data-reveal>
-        <figure class="box">
-          <Image src={boxBamboo} alt="A bamboo tray of jollof cups, small chops, fruit and drinks" widths={[500, 760, 1000]} sizes="(min-width: 900px) 34vw, 92vw" quality={82} loading="lazy" class="box__img" />
-        </figure>
-        <video class="box box--clip" autoplay muted loop playsinline preload="none" poster="/media/box-clip-1-poster.jpg" aria-label="A curated box being packed">
-          <source src="/media/box-clip-1.mp4" type="video/mp4" />
-        </video>
-        <figure class="box">
-          <Image src={boxGift} alt="A loaded gift box with malta, jollof, sides and plantain" widths={[440, 680, 900]} sizes="(min-width: 820px) 32vw, 46vw" quality={82} loading="lazy" class="box__img" />
-        </figure>
-        <figure class="box">
-          <Image src={boxDelivery} alt="Sealed, branded delivery lunch packs" widths={[440, 680, 900]} sizes="(min-width: 820px) 32vw, 46vw" quality={82} loading="lazy" class="box__img" />
-        </figure>
-        <figure class="box">
-          <Image src={boxWrapped} alt="Red gift-wrapped boxes ready to send" widths={[440, 680, 900]} sizes="(min-width: 820px) 32vw, 46vw" quality={82} loading="lazy" class="box__img" />
-        </figure>
-        <video class="box box--clip" autoplay muted loop playsinline preload="none" poster="/media/box-clip-2-poster.jpg" aria-label="A gift box being wrapped">
-          <source src="/media/box-clip-2.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6 · IN THE KITCHEN -->
-  <section class="block--brown block" id="kitchen">
-    <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <div>
-          <span class="eyebrow">In the kitchen</span>
-          <h2 class="sec-title">The part people don't see.</h2>
-        </div>
-        <p class="lede">Cooking at volume, plating, and packing every order by hand.</p>
-      </div>
-      <div class="grid-3 kitchen">
-        {kitchen.map((k, i) => (
-          <figure class="kframe" data-reveal style={`--reveal-delay:${i * 80}ms`}>
-            <Image src={k.image} alt={k.alt} widths={[420, 640, 860]} sizes="(min-width: 960px) 31vw, 92vw" quality={82} loading="lazy" class="kframe__img" />
-          </figure>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- 7 · FRUITY ZOBO -->
-  <section class="block--orange block" id="drinks">
-    <div class="wrap drinks">
-      <div class="drinks__copy" data-reveal>
-        <span class="eyebrow">Fruity Zobo</span>
-        <h2 class="drinks__title">Cold, fruity, and good for you.</h2>
-        <p class="drinks__desc">
-          Rheetah's Fruity Zobo. Hibiscus, ginger, pineapple, orange, lemon. Natural, no artificial
-          colours, no preservatives. 200ml, best served chilled.
-        </p>
-        <ul role="list" class="tags">
-          <li>Hibiscus</li><li>Ginger</li><li>Pineapple</li><li>Orange</li><li>Lemon</li>
-        </ul>
-        <a href={wa} target="_blank" rel="noopener" class="btn btn--brown">Order the drinks <span class="arrow">→</span></a>
-      </div>
-      <div class="drinks__media" data-reveal>
-        <Image
-          src={zobo}
-          alt="Two flavours of Rheetah's Fruity Zobo held up on a Lagos rooftop"
-          widths={[480, 760, 1100]}
-          sizes="(min-width: 900px) 42vw, 92vw"
-          quality={84}
-          loading="lazy"
-          class="drinks__img"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- 8 · TEAM -->
-  <section id="team" aria-label="The team">
-    <div class="hood">
-      <Image
-        src={team}
-        alt="The Rheetah's Kitchen crew in branded tees at the GTCO Food and Drink Festival stand"
-        widths={[720, 1200, 1600, 2000]}
-        sizes="100vw"
-        quality={82}
-        loading="lazy"
-        class="hood__img"
-      />
-      <div class="hood__scrim"></div>
-      <div class="wrap hood__inner" data-reveal>
-        <span class="eyebrow hood__eyebrow">The team</span>
-        <h2 class="hood__title">The people behind the pans.</h2>
-        <p>The Rheetah's Kitchen crew at the GTCO Food and Drink Festival.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9 · GWR TEASER -->
-  <section class="block-sm block--cream">
-    <div class="wrap">
-      <a href="/gwr" class="gwrteaser" data-reveal>
-        <div class="gwrteaser__copy">
-          <span class="gwrteaser__eyebrow">The record · The cause · The impact</span>
-          <h2 class="gwrteaser__title">Attempting the Guinness World Record for the longest cooking marathon by an individual.</h2>
-          <p>Self-directed and community-powered. Food cooked during the attempt is shared and donated to charity partners across Lagos.</p>
-          <span class="gwrteaser__cta">Read the full attempt <span class="arrow">→</span></span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- 10 · CONTACT -->
-  <section class="block--brown block" id="contact">
-    <div class="wrap">
-      <div class="contact" data-reveal>
-        <div class="contact__intro">
-          <span class="eyebrow">Contact</span>
-          <h2 class="contact__title">Order, cater, or just say hello.</h2>
-          <p>Message on WhatsApp for trays, boxes, and catering. We reply fast.</p>
-          <a href={wa} target="_blank" rel="noopener" class="btn btn--orange">Order on WhatsApp <span class="arrow">→</span></a>
-        </div>
-        <ul role="list" class="contact__list">
-          <li>
-            <span class="contact__k">WhatsApp &amp; Call</span>
-            <a href="tel:+2349129508724" class="contact__v">+234 912 950 8724</a>
-          </li>
-          <li>
-            <span class="contact__k">Email</span>
-            <a href="mailto:rheetahskitchen@gmail.com" class="contact__v">rheetahskitchen@gmail.com</a>
-          </li>
-          <li>
-            <span class="contact__k">Instagram</span>
-            <a href="https://www.instagram.com/rheetahs_kitchen/" target="_blank" rel="noopener" class="contact__v">@rheetahs_kitchen</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <GwrBand />
 </Base>
 
 <style>
-  /* 1 · HERO */
+  /* HERO */
   .hero {
     position: relative;
+    min-height: min(92vh, 780px);
     display: grid;
-    align-items: center;
-    min-height: min(94vh, 52rem);
+    align-items: end;
     overflow: hidden;
     background: var(--brown-deep);
   }
@@ -382,209 +129,60 @@ const kitchen = [
   .hero__scrim {
     position: absolute; inset: 0; z-index: 1;
     background:
-      linear-gradient(180deg, rgba(42,22,7,0.55) 0%, rgba(42,22,7,0.25) 30%, rgba(42,22,7,0.55) 68%, rgba(42,22,7,0.9) 100%),
-      radial-gradient(120% 90% at 20% 90%, rgba(216,95,20,0.35) 0%, transparent 55%);
+      linear-gradient(180deg, rgba(42,22,7,0.55) 0%, rgba(42,22,7,0.12) 26%, rgba(42,22,7,0.42) 60%, rgba(42,22,7,0.9) 100%);
   }
-  .hero__inner { position: relative; z-index: 2; padding-block: clamp(3rem, 10vw, 7rem); }
-  .hero__badge {
-    background: rgba(248,241,228,0.14);
-    color: var(--cream);
-    border: 1px solid rgba(248,241,228,0.3);
-    backdrop-filter: blur(4px);
-    max-width: 100%;
-    white-space: normal;
-    line-height: 1.3;
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    padding-block: clamp(40px, 8vh, 84px);
   }
+  .hero__eyebrow { color: var(--gold-soft); }
   .hero__title {
     color: var(--cream);
-    font-size: var(--step-7);
-    font-weight: 700;
-    line-height: 0.92;
-    letter-spacing: -0.04em;
-    margin-top: var(--space-m);
-    text-shadow: 0 4px 40px rgba(0,0,0,0.35);
+    font-size: var(--fs-hero);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-top: 16px;
+    max-width: 15ch;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.3);
   }
-  .hero__title em { font-style: italic; color: var(--orange-bright); }
-  .hero__strip {
-    display: flex; align-items: center; flex-wrap: wrap;
-    gap: 0.7em;
-    margin-top: var(--space-m);
-    color: var(--cream);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-size: var(--step-0);
+  .hero__sub {
+    color: color-mix(in srgb, var(--cream) 90%, transparent);
+    font-size: clamp(15px, 3.4vw, 19px);
+    font-family: var(--serif);
+    margin-top: 18px;
+    max-width: 34ch;
+    text-shadow: 0 1px 16px rgba(0,0,0,0.4);
   }
-  .hero__strip i { width: 6px; height: 6px; border-radius: 50%; background: var(--orange-bright); }
-  .hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-top: var(--space-l); }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  .hero__ghost { color: var(--cream); border-color: rgba(247,241,232,0.5); }
+  .hero__ghost:hover { background: var(--cream); color: var(--brown); border-color: var(--cream); }
 
-  /* 2 · STORY */
-  .story {
+  /* INTRO */
+  .intro { background: var(--cream); }
+  .intro__inner { max-width: 640px; margin-inline: auto; text-align: center; }
+  .intro__eyebrow { color: var(--gold); }
+  .intro__lead {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.4;
+    color: var(--brown);
+    margin-top: 18px;
+  }
+  .intro__link { margin-top: 26px; }
+
+  /* DOORS */
+  .doors { background: var(--cream); padding-top: 0; }
+  .doors__head { margin-bottom: clamp(28px, 4vh, 44px); }
+  .doors__title { font-size: var(--fs-h2); margin-top: 12px; }
+  .doors__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
-    align-items: center;
+    gap: 14px;
   }
-  .story__media { position: relative; }
-  .story__img {
-    position: relative; z-index: 1;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center 30%;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lift);
+  @media (min-width: 640px) {
+    .doors__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
   }
-  .story__frame {
-    position: absolute;
-    inset: auto -0.9rem -0.9rem auto;
-    width: 62%; height: 62%;
-    border-radius: var(--radius-xl);
-    background: linear-gradient(150deg, var(--orange-bright), var(--orange-deep));
-    z-index: 0;
-  }
-  .story__title { font-size: var(--step-4); font-weight: 700; letter-spacing: -0.03em; margin-block: var(--space-s) var(--space-m); max-width: 16ch; }
-  .story__copy p { color: var(--ink-soft); font-size: var(--step-1); max-width: 50ch; }
-  .story__copy p + p { margin-top: var(--space-s); }
-  .timeline {
-    display: grid; gap: var(--space-s);
-    margin-top: var(--space-l);
-    padding-top: var(--space-l);
-    border-top: 2px solid var(--line);
-  }
-  .timeline li { display: grid; grid-template-columns: 5.6rem 1fr; gap: var(--space-m); align-items: baseline; }
-  .timeline strong { font-family: var(--font-display); font-weight: 700; font-size: var(--step-3); color: var(--orange); line-height: 1; letter-spacing: -0.03em; }
-  .timeline span { color: var(--ink-soft); font-size: var(--step--1); }
-  @media (min-width: 900px) {
-    .story { grid-template-columns: 0.85fr 1.15fr; gap: var(--space-2xl); }
-  }
-
-  /* 3 · SIGNATURES */
-  .signatures { display: grid; grid-template-columns: 1fr; gap: var(--space-l); }
-  .sig {
-    display: flex; flex-direction: column;
-    background: rgba(248,241,228,0.05);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
-  }
-  .sig:hover { transform: translateY(-6px); box-shadow: var(--shadow-block); border-color: var(--orange); }
-  .sig__media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
-  .sig__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
-  .sig:hover .sig__img { transform: scale(1.05); }
-  .sig__tag {
-    position: absolute; top: var(--space-s); left: var(--space-s);
-    background: var(--orange); color: #fff;
-  }
-  .sig__tag--signature { background: var(--cream); color: var(--brown-deep); }
-  .sig__body { padding: var(--space-l); display: flex; flex-direction: column; gap: 0.5em; flex: 1; }
-  .sig__name { font-size: var(--step-3); font-weight: 700; color: var(--cream); }
-  .sig__desc { color: var(--ink-soft); }
-  .sig__link { margin-top: var(--space-2xs); color: var(--orange-bright); align-self: flex-start; }
-  @media (min-width: 820px) { .signatures { grid-template-columns: 1fr 1fr; } }
-
-  /* 4 · CATERING */
-  .lead {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-    margin-bottom: var(--space-m);
-  }
-  @media (min-width: 700px) { .lead { aspect-ratio: 16 / 7; } }
-  .lead__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
-  .lead__overlay {
-    position: absolute; inset-inline: 0; bottom: 0;
-    padding: clamp(1.5rem, 5vw, 3rem);
-    background: linear-gradient(0deg, rgba(42,22,7,0.9) 0%, rgba(42,22,7,0.2) 60%, transparent 100%);
-  }
-  .lead__line { color: var(--cream); font-family: var(--font-display); font-weight: 600; font-style: italic; font-size: var(--step-2); max-width: 24ch; line-height: 1.1; }
-
-  .tiles { gap: var(--space-s); }
-  .tile { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 4; box-shadow: var(--shadow-soft); }
-  .tile__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
-  .tile:hover .tile__img { transform: scale(1.06); }
-  .tile__cap {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: flex-end; gap: 0.15em;
-    padding: var(--space-s);
-    background: linear-gradient(0deg, rgba(42,22,7,0.88) 0%, rgba(42,22,7,0.1) 55%, transparent 100%);
-  }
-  .tile__label { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-bright); }
-  .tile__caption { font-family: var(--font-display); font-weight: 600; font-style: italic; font-size: var(--step-1); color: var(--cream); }
-  .note { margin-top: var(--space-m); font-size: var(--step--1); color: var(--ink-faint); }
-
-  /* 5 · BOXES */
-  .boxes { display: grid; grid-template-columns: 1fr; gap: var(--space-s); }
-  .box { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: var(--cream-card); box-shadow: var(--shadow-soft); }
-  .box__img, .box--clip { width: 100%; height: 100%; object-fit: cover; }
-  @media (min-width: 560px) { .boxes { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 900px) { .boxes { grid-template-columns: repeat(3, 1fr); } }
-
-  /* 6 · KITCHEN */
-  .kframe { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 5; box-shadow: var(--shadow-block); }
-  .kframe__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
-  .kframe:hover .kframe__img { transform: scale(1.05); }
-
-  /* 7 · DRINKS */
-  .drinks { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: center; }
-  .drinks__title { color: #fff; font-size: var(--step-5); font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; margin-block: var(--space-s) var(--space-m); max-width: 12ch; }
-  .drinks__desc { color: rgba(255,251,245,0.94); font-size: var(--step-1); max-width: 46ch; }
-  .drinks__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-block); }
-  .tags { display: flex; flex-wrap: wrap; gap: 0.5em; margin-block: var(--space-m) var(--space-l); }
-  .tags li {
-    font-size: var(--step--1); font-weight: 700; color: #fff;
-    background: rgba(255,255,255,0.16);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 999px; padding: 0.4em 1em;
-  }
-  @media (min-width: 900px) {
-    .drinks { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-2xl); }
-  }
-
-  /* 8 · TEAM */
-  .hood { position: relative; min-height: min(80vh, 40rem); display: grid; align-items: end; overflow: hidden; }
-  .hood__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
-  .hood__scrim {
-    position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(42,22,7,0.9) 0%, rgba(42,22,7,0.25) 50%, rgba(42,22,7,0.35) 100%);
-  }
-  .hood__inner { position: relative; z-index: 1; padding-block: clamp(2.5rem, 7vw, 4.5rem); }
-  .hood__eyebrow { color: var(--orange-bright); }
-  .hood__title { color: var(--cream); font-size: var(--step-4); font-weight: 700; letter-spacing: -0.03em; max-width: 18ch; margin-top: var(--space-s); }
-  .hood__inner p { color: rgba(248,241,228,0.86); max-width: 44ch; margin-top: var(--space-2xs); font-size: var(--step-1); }
-
-  /* 9 · GWR TEASER */
-  .gwrteaser {
-    display: block; position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    padding: clamp(2.25rem, 6vw, 4.5rem);
-    background:
-      radial-gradient(130% 150% at 88% 0%, color-mix(in srgb, var(--gwr-gold) 26%, transparent) 0%, transparent 55%),
-      var(--gwr-ink);
-    border: 1px solid color-mix(in srgb, var(--gwr-gold) 34%, transparent);
-    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
-  }
-  .gwrteaser:hover { transform: translateY(-4px); box-shadow: 0 40px 80px -34px rgba(0,0,0,0.7); }
-  .gwrteaser__copy { max-width: 56ch; }
-  .gwrteaser__eyebrow { font-size: var(--step--1); font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gwr-gold); }
-  .gwrteaser__title { color: var(--gwr-cream); font-size: var(--step-3); font-weight: 700; margin-top: var(--space-s); letter-spacing: -0.02em; }
-  .gwrteaser__copy p { color: color-mix(in srgb, var(--gwr-cream) 80%, transparent); margin-top: var(--space-s); }
-  .gwrteaser__cta { display: inline-block; margin-top: var(--space-m); color: var(--gwr-gold); font-weight: 700; }
-  .gwrteaser:hover .arrow { transform: translateX(4px); }
-
-  /* 10 · CONTACT */
-  .contact { display: grid; grid-template-columns: 1fr; gap: var(--space-xl); align-items: start; }
-  .contact__title { font-size: var(--step-4); font-weight: 700; letter-spacing: -0.03em; color: var(--cream); margin-block: var(--space-s) var(--space-s); max-width: 14ch; }
-  .contact__intro p { color: var(--ink-soft); max-width: 38ch; margin-bottom: var(--space-l); font-size: var(--step-1); }
-  .contact__list { display: grid; gap: var(--space-m); align-content: start; }
-  .contact__list li { display: grid; gap: 0.2em; border-top: 1px solid var(--line); padding-top: var(--space-s); }
-  .contact__k { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; }
-  .contact__v { font-family: var(--font-display); font-weight: 600; font-size: var(--step-2); color: var(--cream); }
-  .contact__v:hover { color: var(--orange-bright); }
-  @media (min-width: 820px) { .contact { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-2xl); } }
 </style>
 
 <script>

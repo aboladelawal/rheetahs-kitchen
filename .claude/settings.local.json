@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -m 6 -o /dev/null -w \"gfonts=%{http_code}\\\\n\" https://fonts.googleapis.com/css2?family=Cormorant+Garamond)",
+      "Bash(curl -s -m 6 -o /dev/null -w \"gfonts=%{http_code}\\\\n\" \"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&display=swap\")",
+      "Bash(curl -s -m 6 -o /dev/null -w \"npm=%{http_code}\\\\n\" \"https://registry.npmjs.org/@fontsource/cormorant-garamond\")",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"http=%{http_code}\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-prefers-reduced-motion --force-device-scale-factor=1 --virtual-time-budget=9000 --window-size=1440,3400 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/kw-desktop.png http://localhost:4321/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-prefers-reduced-motion --force-device-scale-factor=2 --virtual-time-budget=9000 --window-size=390,3200 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/kw-mobile.png http://localhost:4321/)",
+      "Bash(python3 -)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --virtual-time-budget=8000 --window-size=390,850 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/hero-m.png http://localhost:4321/)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2 --virtual-time-budget=8000 --window-size=390,850 --screenshot=/private/tmp/claude-501/-Users-mufasa-Documents-Applications-rheetahs-kitchen/997a7662-7a6e-4d00-83fd-4a8b0a522ba8/scratchpad/hero-m2.png http://localhost:4321/)"
+    ]
+  }
+}
