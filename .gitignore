@@ -15,3 +15,6 @@ npm-debug.log*
 # vercel / netlify
 .vercel
 .netlify
+
+# birthday photo originals (downscaled copies live in src/birthday/photos)
+Rta Birthday/

@@ -1,0 +1,275 @@
+---
+/*
+  Rheetah's Kitchen — Birthday overlay (July 10).
+  Isolated: reads ONLY from src/birthday/photos.
+  No emoji. No sound. Fits the viewport, single centered column.
+  Renders hidden by default; a client script reveals it only on July 10
+  (client-local date), or when FORCE_PREVIEW / ?bday=1 is set.
+  Nothing here is referenced by the nav, sitemap, or any other page.
+*/
+import { Image } from 'astro:assets';
+
+const photoMods = import.meta.glob('../birthday/photos/*.{jpg,jpeg,png,webp}', { eager: true });
+const photos = Object.keys(photoMods)
+  .sort()
+  .map((k) => (photoMods[k] as { default: ImageMetadata }).default);
+
+const wa =
+  'https://wa.me/2349129508724?text=' +
+  encodeURIComponent('Happy Birthday, Chef Rheetah! Wishing you a beautiful year.');
+---
+
+<div class="bday" data-bday hidden role="dialog" aria-modal="true" aria-label="A birthday celebration for Chef Rheetah">
+  <div class="bday__bg"></div>
+  <div class="bday__glow" aria-hidden="true"></div>
+  <div class="bday__balloons" data-balloons aria-hidden="true"></div>
+  <div class="bday__grain" aria-hidden="true"></div>
+
+  <div class="bday__card" data-card tabindex="-1">
+    <p class="bday__eyebrow">July 10</p>
+
+    <div class="bday__stage" data-stage>
+      {photos.map((p, i) => (
+        <Image
+          src={p}
+          alt="Chef Rita Mensah"
+          widths={[380, 760, 1140]}
+          sizes="(max-width: 640px) 76vw, 380px"
+          loading="lazy"
+          class:list={['bday__photo', { 'is-active': i === 0 }]}
+        />
+      ))}
+      <span class="bday__frame" aria-hidden="true"></span>
+    </div>
+
+    <h2 class="bday__title">Happy Birthday,<br /><em>Chef Rheetah.</em></h2>
+    <p class="bday__line">Another year of love at first bite.</p>
+
+    <div class="bday__actions">
+      <a class="bday__wa" href={wa} target="_blank" rel="noopener" data-keep>Send birthday wishes <span class="bday__arw">&rarr;</span></a>
+      <button class="bday__dismiss" data-dismiss data-keep>Enter site</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .bday {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    padding: clamp(16px, 4vw, 40px);
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(.2,.6,.2,1);
+    --gold: #C7A15A;
+    --gold-soft: #D9BD86;
+    --cream: #F7F1E8;
+    --ink: #2A1607;
+    --muted: #7A6552;
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .bday[hidden] { display: none; }
+  .bday.is-open { opacity: 1; }
+
+  /* Espresso-to-black wash */
+  .bday__bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(125% 100% at 50% 16%, #37200E 0%, #1A0E05 46%, #0A0602 100%);
+  }
+  .bday__glow {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      radial-gradient(60% 40% at 50% 108%, rgba(199,161,90,0.16), transparent 60%),
+      radial-gradient(80% 70% at 50% 40%, transparent 62%, rgba(0,0,0,0.45) 100%);
+  }
+  .bday__grain {
+    position: absolute; inset: 0; z-index: 3; pointer-events: none;
+    opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* continuous floating balloons — CSS only, behind the content */
+  .bday__balloons { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+  .bday__balloon { position: absolute; bottom: -20vh; left: 0; will-change: transform; }
+  .bday__balloon-b {
+    position: relative;
+    width: var(--bw, 44px); height: calc(var(--bw, 44px) * 1.22);
+    border-radius: 50% 50% 49% 49% / 46% 46% 54% 54%;
+    background: radial-gradient(38% 30% at 34% 26%, rgba(255,255,255,0.55), rgba(255,255,255,0) 62%), var(--bc, #C7A15A);
+    box-shadow: inset -6px -9px 15px rgba(0,0,0,0.30), inset 5px 5px 11px rgba(255,255,255,0.10), 0 10px 22px rgba(0,0,0,0.28);
+    animation: bsway var(--sway, 6s) ease-in-out infinite alternate;
+  }
+  .bday__balloon-b::after {
+    content: ""; position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%);
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 8px solid var(--bc, #C7A15A); opacity: 0.9;
+  }
+  .bday__balloon-s {
+    position: absolute; top: 100%; left: 50%; width: 13px; height: 30px; margin-top: 5px;
+    border-left: 1.5px solid rgba(230,203,136,0.45); border-bottom-left-radius: 13px; transform: translateX(-50%);
+  }
+  @keyframes bfloat { from { transform: translateY(0); } to { transform: translateY(-135vh); } }
+  @keyframes bsway { from { transform: translateX(-11px) rotate(-3.5deg); } to { transform: translateX(11px) rotate(3.5deg); } }
+
+  .bday__card {
+    position: relative; z-index: 4;
+    width: min(92vw, 500px);
+    margin: auto;
+    background: var(--cream);
+    border: 1px solid rgba(199,161,90,0.35);
+    border-radius: 6px;
+    padding: clamp(22px, 4vw, 40px);
+    text-align: center;
+    box-shadow: 0 50px 120px -40px rgba(0,0,0,0.72), 0 0 0 1px rgba(199,161,90,0.18);
+    transform: scale(0.965) translateY(8px);
+    transition: transform 0.8s cubic-bezier(.2,.6,.2,1);
+  }
+  .bday.is-open .bday__card { transform: none; }
+
+  .bday__eyebrow {
+    font-family: var(--sans);
+    font-size: 11.5px; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .bday__stage {
+    position: relative;
+    margin: clamp(16px, 3vw, 22px) auto 0;
+    width: min(100%, 340px);
+    aspect-ratio: 4 / 5;
+    border-radius: 4px; overflow: hidden;
+    background: #e9dcc6;
+    box-shadow: 0 22px 54px -26px rgba(42,22,7,0.5);
+  }
+  .bday__frame { position: absolute; inset: 0; border: 1px solid rgba(199,161,90,0.55); border-radius: 4px; pointer-events: none; }
+  .bday__photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+  }
+  .bday__photo.is-active { opacity: 1; animation: kenburns var(--dwell, 5.2s) ease forwards; }
+  @keyframes kenburns { from { transform: scale(1.001); } to { transform: scale(1.06); } }
+
+  .bday__title {
+    font-family: var(--serif); font-weight: 400; font-optical-sizing: auto;
+    font-size: clamp(29px, 5.4vw, 43px); line-height: 1.02; letter-spacing: -0.015em;
+    color: var(--ink); margin-top: clamp(18px, 3vw, 26px);
+  }
+  .bday__title em { font-style: italic; }
+  .bday__line {
+    font-family: var(--sans);
+    color: var(--muted); font-size: 14.5px; line-height: 1.6;
+    margin: 14px auto 0; max-width: 30ch;
+  }
+
+  .bday__actions { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: clamp(22px, 3.5vw, 30px); }
+  .bday__wa {
+    display: inline-flex; align-items: center; gap: 0.5em;
+    padding: 0.95em 1.7em; border-radius: 999px;
+    font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+    color: #2a1607; background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+    box-shadow: 0 14px 32px -14px rgba(199,161,90,0.7);
+    transition: transform 0.3s cubic-bezier(.2,.6,.2,1), box-shadow 0.3s ease;
+  }
+  .bday__wa:hover { transform: translateY(-2px); box-shadow: 0 18px 38px -14px rgba(199,161,90,0.8); }
+  .bday__arw { transition: transform 0.35s cubic-bezier(.2,.6,.2,1); }
+  .bday__wa:hover .bday__arw { transform: translateX(4px); }
+  .bday__dismiss {
+    font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer; transition: color 0.3s ease;
+  }
+  .bday__dismiss:hover { color: var(--ink); }
+
+  .bday :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bday, .bday__card { transition: opacity 0.2s linear; }
+    .bday.is-open .bday__card { transform: none; }
+    .bday__photo.is-active { animation: none; }
+    .bday__balloon-b { animation-duration: 16s; }
+  }
+</style>
+
+<script>
+  // ---- Config -------------------------------------------------------------
+  const FORCE_PREVIEW = false; // ships false. Set true (or use ?bday=1) to preview any day.
+
+  const root = document.querySelector('[data-bday]') as HTMLElement | null;
+  if (root) {
+    const params = new URLSearchParams(location.search);
+    const forced = FORCE_PREVIEW || params.get('bday') === '1';
+    const now = new Date();
+    const isJul10 = now.getMonth() === 6 && now.getDate() === 10; // July = month 6
+    const dismissed = sessionStorage.getItem('rk_bday_dismissed') === '1';
+    if (forced || (isJul10 && !dismissed)) setup(root, forced);
+  }
+
+  function setup(root: HTMLElement, forced: boolean) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const photos = Array.from(root.querySelectorAll('.bday__photo')) as HTMLElement[];
+    const balloons = root.querySelector('[data-balloons]') as HTMLElement;
+    const card = root.querySelector('[data-card]') as HTMLElement;
+    const dismissBtn = root.querySelector('[data-dismiss]') as HTMLButtonElement;
+
+    // Reveal + load Fraunces only now (keeps normal days zero-cost)
+    root.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    if (!document.getElementById('bday-fraunces')) {
+      const l = document.createElement('link');
+      l.id = 'bday-fraunces'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap';
+      document.head.appendChild(l);
+    }
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('is-open')));
+    setTimeout(() => card?.focus(), 400);
+
+    // Montage cross-fade
+    if (photos.length > 1) {
+      let idx = 0;
+      const dwellMs = reduce ? 6000 : 5200;
+      root.style.setProperty('--dwell', dwellMs / 1000 + 's');
+      setInterval(() => {
+        photos[idx].classList.remove('is-active');
+        idx = (idx + 1) % photos.length;
+        photos[idx].classList.add('is-active');
+      }, dwellMs);
+    }
+
+    // Continuous floating balloons: respawn each at a new spot when it finishes rising
+    const COLORS = ['#C7A15A', '#C7A15A', '#C7A15A', '#FFFDF8', '#FFFDF8', '#F27326', '#F27326', '#6B4A33', '#41210A'];
+    const COUNT = reduce ? 4 : (window.innerWidth < 560 ? 8 : 11);
+    function launch(el: HTMLElement, initial: boolean) {
+      const dur = (reduce ? 22 : 9) + Math.random() * (reduce ? 10 : 7);
+      el.style.left = Math.random() * 100 + '%';
+      el.style.setProperty('--bw', 30 + Math.random() * 30 + 'px');
+      el.style.setProperty('--bc', COLORS[(Math.random() * COLORS.length) | 0]);
+      (el.firstChild as HTMLElement).style.setProperty('--sway', 4 + Math.random() * 4 + 's');
+      const delay = initial ? -Math.random() * dur : 0;
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = 'bfloat ' + dur + 's linear ' + delay + 's forwards';
+    }
+    for (let i = 0; i < COUNT; i++) {
+      const b = document.createElement('div');
+      b.className = 'bday__balloon';
+      b.innerHTML = '<div class="bday__balloon-b"><span class="bday__balloon-s"></span></div>';
+      b.addEventListener('animationend', (e) => { if ((e as AnimationEvent).animationName === 'bfloat') launch(b, false); });
+      balloons.appendChild(b);
+      launch(b, true);
+    }
+
+    // Dismiss / close
+    function close() {
+      root.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (!forced) sessionStorage.setItem('rk_bday_dismissed', '1');
+      setTimeout(() => root.setAttribute('hidden', ''), 700);
+    }
+    dismissBtn.addEventListener('click', close);
+    root.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  }
+</script>

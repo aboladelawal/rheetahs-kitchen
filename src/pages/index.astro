@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Ticker from '../components/Ticker.astro';
 import EditorialRow from '../components/EditorialRow.astro';
+import BirthdayOverlay from '../components/BirthdayOverlay.astro';
 
 const signatures = [
   { href: '/menu/jollof', image: '/images/jollof.jpg', name: 'Jollof rice', tag: 'The house signature', alt: 'Cups of smoky jollof rice topped with chicken and suya' },
@@ -153,6 +154,9 @@ const gallery = [
       ))}
     </div>
   </section>
+
+  {/* July 10 only — isolated overlay, leaves no trace the rest of the year */}
+  <BirthdayOverlay />
 </Base>
 
 <style>
